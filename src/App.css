@@ -1,8 +1,29 @@
-#root {
+/* #root {
   margin-top: 7vh;
+} */
+
+html, body, #root, .page{
+  height: 100%;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
 }
 
 .leaflet-container {
-  width: 100wh; 
-  height: 81vh;
+  flex: 1;
+  display: flex;
+}
+
+.login-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
