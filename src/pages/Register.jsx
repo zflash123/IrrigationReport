@@ -8,5 +8,5 @@ export default function Register() {
             <input type="text" name="alamat" id="alamat" placeholder="alamat" />
             <button>Register</button>
         </div>
-    )
+    );
 }

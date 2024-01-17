@@ -13,5 +13,5 @@ export default function Laporan(){
             </div>
             <BottomBar />
         </div>
-    )
+    );
 }

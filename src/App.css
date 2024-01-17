@@ -1,7 +1,3 @@
-/* #root {
-  margin-top: 7vh;
-} */
-
 html, body, #root, .page{
   height: 100%;
 }
@@ -13,6 +9,8 @@ html, body, #root, .page{
 
 .content {
   flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .leaflet-container {

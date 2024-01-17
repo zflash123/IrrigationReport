@@ -13,5 +13,5 @@ export default function Profil(){
             </div>
             <BottomBar />
         </div>
-    )
+    );
 }

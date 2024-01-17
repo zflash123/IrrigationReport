@@ -16,14 +16,14 @@ export default function Laporkan() {
             maxBounds={[[-85.06, -180], [85.06, 180]]}
             scrollWheelZoom={true}>
             <TileLayer
-              url="http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+              url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
             />
             <LocateUser />
           </MapContainer>
         </div>
         <BottomBar />
       </div>
-    )
+    );
   }
 
 function LocateUser() {
