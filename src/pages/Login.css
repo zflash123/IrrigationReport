@@ -1,28 +1,28 @@
 .login-header{
-    margin-bottom: 70px;
+  margin-bottom: 70px;
 }
 
 input {
-    width: 340px;
-    height: 48px;
-    border: 5px solid #E7E7E7;
-    border-radius: 17px;
-    box-sizing: border-box;
-    margin: 10px;
+  width: 340px;
+  height: 48px;
+  border: 5px solid #E7E7E7;
+  border-radius: 17px;
+  box-sizing: border-box;
+  margin: 10px;
 }
 
 #forgot-pwd{
-    text-align: right;
-    margin-bottom: 2vh;
-    margin-right: 14px;
+  text-align: right;
+  margin-bottom: 2vh;
+  margin-right: 14px;
 }
 
 button {
-    background-color: #B57EFB;
-    color: white;
-    width: 25vw;
-    height: 5vh;
-    border-radius: 10px;
-    border: 0px;
-    margin-bottom: 2vh;
+  background-color: #B57EFB;
+  color: white;
+  width: 25vw;
+  height: 5vh;
+  border-radius: 10px;
+  border: 0px;
+  margin-bottom: 2vh;
 }
