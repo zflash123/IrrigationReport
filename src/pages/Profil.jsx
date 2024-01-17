@@ -11,7 +11,7 @@ export default function Profil(){
         <h1>Ini halaman Profil</h1>
         <h1>Ini halaman Profil</h1>
       </div>
-      <BottomBar />
+      <BottomBar activeIcon={"profil"} />
     </div>
   );
 }

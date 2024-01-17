@@ -22,7 +22,7 @@ export default function Laporan(){
 					<LocateUser />
 				</MapContainer>
 			</div>
-			<BottomBar />
+			<BottomBar activeIcon={"laporan"}/>
 		</div>
 	);
 }

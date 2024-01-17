@@ -22,7 +22,7 @@ export default function Laporkan() {
           <LocateUser />
         </MapContainer>
       </div>
-      <BottomBar />
+      <BottomBar activeIcon={"laporkan"}/>
     </div>
   );
 }

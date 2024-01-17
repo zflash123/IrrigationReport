@@ -33,7 +33,7 @@ export default function Riwayat(){
           <h3>Longitude: 1211.3</h3>
         </div>
       </div>
-      <BottomBar />
+      <BottomBar activeIcon={"riwayat"} />
     </div>
   );
 }
