@@ -8,9 +8,9 @@ export default function Login() {
         <input type="text" name="email" id="email" placeholder="email"/>
         <input type="text" name="password" id="password" placeholder="password"/>
         <div id="forgot-pwd">
-          <a href="">Lupa password?</a><br />
+          <a href="/lupa-password">Lupa password?</a><br />
         </div>
-        <button>Login</button><br />
+        <button className="login-button">Login</button><br />
         <a href="/register" id="register-link">Belum punya akun? klik untuk daftar</a>
       </form>
     </div>
