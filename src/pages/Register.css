@@ -1,0 +1,17 @@
+.register-button {
+  background-color: #B57EFB;
+  color: white;
+  width: 32%;
+  height: 2.7rem;
+  border-radius: 10px;
+  border: 0px;
+  margin-top: 10%;
+}
+
+#register-email {
+  margin-top: 20%;
+}
+
+#register-email, #register-password, #register-name, #register-address{
+  margin-bottom: 7%;
+}
