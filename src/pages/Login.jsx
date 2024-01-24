@@ -5,8 +5,8 @@ export default function Login() {
     <div className="login-content">
       <h1 className="login-header">Login</h1>
       <form action="">
-        <input type="text" name="email" id="email" placeholder="email"/>
-        <input type="text" name="password" id="password" placeholder="password"/>
+        <input type="text" name="email" className="form-input" id="email" placeholder="email"/>
+        <input type="text" name="password" className="form-input" id="password" placeholder="password"/>
         <div id="forgot-pwd">
           <a href="/lupa-password">Lupa password?</a><br />
         </div>
