@@ -53,20 +53,22 @@ export default function Laporkan() {
         </div>
         <div className="popup">
           <h3 className="h-info">Informasi Laporan</h3>
-          <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
-          <input type="file" id="myFile" name="filename"></input>
-          <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
-          <input type="radio" name="fav_language" value="ringan"></input>
-          <label htmlFor="html" id="dmg-radio">ringan</label>
-          <input type="radio" name="fav_language" value="sedang"></input>
-          <label htmlFor="css" id="dmg-radio">sedang</label>
-          <input type="radio" name="fav_language" value="parah"></input>
-          <label htmlFor="parah" id="dmg-radio">parah</label>
-          <h6 className="h-ad-info">Keterangan Tambahan</h6>
-          <textarea className="ad-info" name="ket-tambahan" rows="5"></textarea>
-          <div className="div-submit-report">
-            <button className="submit-report">Kumpulkan Laporan</button>
-          </div>
+          <form action="" method="post">
+            <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
+            <input type="file" id="myFile" name="filename"></input>
+            <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
+            <input type="radio" name="fav_language" value="ringan"></input>
+            <label htmlFor="html" id="dmg-radio">ringan</label>
+            <input type="radio" name="fav_language" value="sedang"></input>
+            <label htmlFor="css" id="dmg-radio">sedang</label>
+            <input type="radio" name="fav_language" value="parah"></input>
+            <label htmlFor="parah" id="dmg-radio">parah</label>
+            <h6 className="h-ad-info">Keterangan Tambahan</h6>
+            <textarea className="ad-info" name="ket-tambahan" rows="5"></textarea>
+            <div className="div-submit-report">
+              <button className="submit-report" type="submit">Kumpulkan Laporan</button>
+            </div>
+          </form>
         </div>
       </>
       
