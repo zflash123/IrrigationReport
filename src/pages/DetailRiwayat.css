@@ -1,0 +1,26 @@
+.report_detail {
+  width: 60%;
+  height: 7%;
+  margin: auto;
+  margin-top: 3.5%;
+  margin-bottom: 6%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-box-shadow: 0 0 3px #a4a3a3;
+  -webkit-box-shadow: 0 0 3px #a4a3a3;
+  box-shadow: 0 0 10px #a4a3a3;
+}
+
+.report-data{
+  margin-left: 4%;
+  margin-right: 4%;
+  margin-bottom: 4%;
+  padding: 2%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  -moz-box-shadow: 0 0 3px #a4a3a3;
+  -webkit-box-shadow: 0 0 3px #a4a3a3;
+  box-shadow: 0 0 10px #a4a3a3;
+}

@@ -13,6 +13,7 @@ import Laporkan from './pages/Laporkan';
 import Riwayat from './pages/Riwayat';
 import Laporan from './pages/Laporan';
 import Profil from './pages/Profil';
+import DetailRiwayat from './pages/DetailRiwayat';
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/laporkan" element={<Laporkan />} />
-        <Route path="/riwayat" element={<Riwayat />} />            
+        <Route path="/riwayat" element={<Riwayat />} />
+        <Route path="/detail-riwayat/:id" element={<DetailRiwayat />} />
         <Route path="/laporan" element={<Laporan />} />
         <Route path="/profil" element={<Profil />} />
       </Routes>      
