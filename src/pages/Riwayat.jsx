@@ -40,7 +40,7 @@ export default function Riwayat(){
 
   function toDetailPage(id) {
     console.log("In toDetailPage function");
-    navigate("/detail-riwayat/"+id);
+    navigate("/detail-laporan/"+id);
   }
 
   return(
