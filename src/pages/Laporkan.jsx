@@ -3,7 +3,7 @@ import L from 'leaflet';
 import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import LocateUser from '../components/LocateUser';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import "./Laporkan.css";
 
 let markerPosition;
@@ -13,7 +13,7 @@ export default function Laporkan() {
   const [isButtonVisible, setButtonVisibility] = useState(false);
   // const [isMarkerActive, setMarkerActive] = useState(true);
   const [isPopUpActive, setPopUpActive] = useState(false);
-
+  
   function toggleElement() {
     clickCounter=clickCounter+1;
     if(clickCounter==1){
@@ -30,18 +30,18 @@ export default function Laporkan() {
       <div className="leaflet-container" onClick={toggleElement}>
         <MapContainer
           className="full-height-map"
-          center={[-7.87074500384173, 112.52647830035404]}
+          center={[-7.877134903, 112.500402626]}
           zoom={18}
-          minZoom={18}
+          minZoom={5}
           maxZoom={19}
           maxBounds={[[-85.06, -180], [85.06, 180]]}
           scrollWheelZoom={true}>
           <TileLayer
             url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
           />
-          <LocateUser />
-          {/* {console.log("isMarkerActive "+isMarkerActive)} */}
+          {/* <LocateUser /> */}
           <AddMarker />
+          <Segments/>
         </MapContainer>
       </div>
       <div className="div-report">
@@ -95,4 +95,33 @@ function ReportButton({showPopUp}) {
   return (
     <button className="report-button" onClick={showPopUp}>Laporkan Irigasi ini</button>
   );
+}
+
+function Segments() {
+  const map = useMap();
+  const [segments, setSegments] = useState([]);
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/all-segments')
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setSegments(data);
+      });
+  }, []);
+
+  segments.map((segment) => {
+    const geojson = JSON.parse(segment.geojson)
+    var pointA = new L.LatLng(geojson.coordinates[0][1], geojson.coordinates[0][0]);
+		var pointB = new L.LatLng(geojson.coordinates[1][1], geojson.coordinates[1][0]);
+		var pointList = [pointA, pointB];
+    
+		var segmentLine = new L.Polyline(pointList, {
+			color: 'aqua',
+			weight: 5,
+			opacity: 0.5,
+			smoothFactor: 1
+		});
+		segmentLine.addTo(map);
+  })
 }
