@@ -6,28 +6,20 @@ import LocateUser from '../components/LocateUser';
 import { useState, useEffect } from 'react';
 import "./Laporkan.css";
 
-let markerPosition;
-let clickCounter = 0;
-let isMarkerActive = true;
 export default function Laporkan() {
-  const [isButtonVisible, setButtonVisibility] = useState(false);
-  // const [isMarkerActive, setMarkerActive] = useState(true);
   const [isPopUpActive, setPopUpActive] = useState(false);
-  
-  function toggleElement() {
-    clickCounter=clickCounter+1;
-    if(clickCounter==1){
-      setButtonVisibility(true);
-    }
+  const [segmentId, setSegmentId] = useState("0");
+
+  function inputSegmentId(id) {
+    setSegmentId(id);
   }
   function showPopUp() {
-    setButtonVisibility(false);
     setPopUpActive(true);
   }
   return (
     <div className="page">
       <TopNavBar />
-      <div className="leaflet-container" onClick={toggleElement}>
+      <div className="leaflet-container">
         <MapContainer
           className="full-height-map"
           center={[-7.877134903, 112.500402626]}
@@ -40,12 +32,8 @@ export default function Laporkan() {
             url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
           />
           {/* <LocateUser /> */}
-          <AddMarker />
-          <Segments/>
+          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId}/>
         </MapContainer>
-      </div>
-      <div className="div-report">
-        {isButtonVisible && <ReportButton showPopUp={showPopUp} />}
       </div>
       {isPopUpActive && 
       <>
@@ -55,6 +43,7 @@ export default function Laporkan() {
           <h3 className="h-info">Informasi Laporan</h3>
           <form action="" method="post">
             <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
+            <input type="hidden" name="segment_id" value={segmentId}></input>
             <input type="file" id="myFile" name="filename"></input>
             <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
             <input type="radio" name="fav_language" value="ringan"></input>
@@ -78,26 +67,7 @@ export default function Laporkan() {
   );
 }
 
-function AddMarker() {
-  const map = useMap();
-  map.on('click', function(e){
-    if(isMarkerActive){
-      isMarkerActive=false;
-      markerPosition = e.latlng;
-      new L.marker(e.latlng).addTo(map);
-      return null;
-    }
-  });
-  return null;
-}
-
-function ReportButton({showPopUp}) {
-  return (
-    <button className="report-button" onClick={showPopUp}>Laporkan Irigasi ini</button>
-  );
-}
-
-function Segments() {
+function Segments({showPopUp, inputSegmentId}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
   useEffect(() => {
@@ -122,6 +92,10 @@ function Segments() {
 			opacity: 0.5,
 			smoothFactor: 1
 		});
+    segmentLine.on("click", function() {
+      inputSegmentId(segment.id);
+      showPopUp();
+		})
 		segmentLine.addTo(map);
   })
 }
