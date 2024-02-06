@@ -3,6 +3,7 @@ import L from 'leaflet';
 import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import LocateUser from '../components/LocateUser';
+import ReportForm from '../components/ReportForm';
 import { useState, useEffect } from 'react';
 import "./Laporkan.css";
 
@@ -22,7 +23,7 @@ export default function Laporkan() {
       <div className="leaflet-container">
         <MapContainer
           className="full-height-map"
-          center={[-7.877134903, 112.500402626]}
+          center={[-7.902260521, 112.557507431]}
           zoom={18}
           minZoom={5}
           maxZoom={19}
@@ -41,23 +42,7 @@ export default function Laporkan() {
         </div>
         <div className="popup">
           <h3 className="h-info">Informasi Laporan</h3>
-          <form action="" method="post">
-            <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
-            <input type="hidden" name="segment_id" value={segmentId}></input>
-            <input type="file" id="myFile" name="filename"></input>
-            <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
-            <input type="radio" name="fav_language" value="ringan"></input>
-            <label htmlFor="html" id="dmg-radio">ringan</label>
-            <input type="radio" name="fav_language" value="sedang"></input>
-            <label htmlFor="css" id="dmg-radio">sedang</label>
-            <input type="radio" name="fav_language" value="parah"></input>
-            <label htmlFor="parah" id="dmg-radio">parah</label>
-            <h6 className="h-ad-info">Keterangan Tambahan</h6>
-            <textarea className="ad-info" name="ket-tambahan" rows="5"></textarea>
-            <div className="div-submit-report">
-              <button className="submit-report" type="submit">Kumpulkan Laporan</button>
-            </div>
-          </form>
+          <ReportForm segmentId={segmentId}/>
         </div>
       </>
       
