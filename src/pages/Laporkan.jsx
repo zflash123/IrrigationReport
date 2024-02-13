@@ -10,7 +10,13 @@ import "./Laporkan.css";
 export default function Laporkan() {
   const [isPopUpActive, setPopUpActive] = useState(false);
   const [segmentId, setSegmentId] = useState("0");
+  const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
 
+  function changeCoordinate(latitude, longitude) {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  }
   function inputSegmentId(id) {
     setSegmentId(id);
   }
@@ -25,15 +31,15 @@ export default function Laporkan() {
           className="full-height-map"
           center={[-7.902260521, 112.557507431]}
           zoom={18}
-          minZoom={5}
-          maxZoom={19}
+          minZoom={18}
+          maxZoom={18}
           maxBounds={[[-85.06, -180], [85.06, 180]]}
           scrollWheelZoom={true}>
           <TileLayer
-            url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {/* <LocateUser /> */}
-          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId}/>
+          <LocateUser changeCoordinate={changeCoordinate}/>
+          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
         </MapContainer>
       </div>
       {isPopUpActive && 
@@ -52,18 +58,21 @@ export default function Laporkan() {
   );
 }
 
-function Segments({showPopUp, inputSegmentId}) {
+function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/all-segments')
+    fetch('http://127.0.0.1:8000/api/close-segments?' + new URLSearchParams({
+      lat: `${latitude}`,
+      long: `${longitude}`,
+    }))
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setSegments(data);
       });
-  }, []);
+  }, [latitude, longitude]);
 
   segments.map((segment) => {
     const geojson = JSON.parse(segment.geojson)
