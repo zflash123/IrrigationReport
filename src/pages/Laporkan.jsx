@@ -32,7 +32,7 @@ export default function Laporkan() {
           center={[-7.902260521, 112.557507431]}
           zoom={18}
           minZoom={18}
-          maxZoom={18}
+          maxZoom={19}
           maxBounds={[[-85.06, -180], [85.06, 180]]}
           scrollWheelZoom={true}>
           <TileLayer
@@ -89,7 +89,7 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
     segmentLine.on("click", function() {
       inputSegmentId(segment.id);
       showPopUp();
-		})
+		});
 		segmentLine.addTo(map);
   })
 }

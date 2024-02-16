@@ -26,7 +26,7 @@ function App() {
         <Route path="/detail-laporan/:id" element={<DetailRiwayat />} />
         <Route path="/laporan" element={<Laporan />} />
         <Route path="/profil" element={<Profil />} />
-      </Routes>      
+      </Routes>
     </Router>
   )
 }
