@@ -6,6 +6,12 @@
   align-items: center;
 }
 
+.pp-img {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+}
+
 .edit-data {
   display: flex;
   justify-content: right;
@@ -19,12 +25,6 @@
   padding: 0.3rem;
   border-radius: 50%;
   border: 3px solid #B1B1B1;
-}
-
-.add-photo {
-  height: 7rem;
-  width: 7rem;
-  border-radius: 50%;
 }
 
 .logout {
