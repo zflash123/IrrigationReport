@@ -1,10 +1,8 @@
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 
-function useLoginForm({ additionalData }) {
+function useLoginForm({ additionalData, setCookie }) {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
-  const [cookies, setCookie] = useCookies(['user'])
 
   const handleSubmit = (e) => {
     e.preventDefault();

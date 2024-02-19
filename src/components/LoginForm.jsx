@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/login"; // TODO - update to the correct endpoint
 
-const LoginForm = () => {
+const LoginForm = ({setCookie}) => {
   let navigate = useNavigate();
 
   const additionalData = {
@@ -12,7 +12,7 @@ const LoginForm = () => {
   };
 
   const { handleSubmit, status, message } = useLoginForm({
-    additionalData,
+    additionalData, setCookie
   });
 
   useEffect(() => {

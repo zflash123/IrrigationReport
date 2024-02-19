@@ -14,16 +14,18 @@ import Riwayat from './pages/Riwayat';
 import Laporan from './pages/Laporan';
 import Profil from './pages/Profil';
 import DetailRiwayat from './pages/DetailRiwayat';
-import { CookiesProvider } from 'react-cookie'
+import { useCookies, CookiesProvider } from 'react-cookie'
 
 function App() {
+  const [cookies, setCookie] = useCookies(['user'])
+
   return (
     <CookiesProvider>
       <Router>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setCookie={setCookie} />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/laporkan" element={<Laporkan />} />
+          <Route path="/laporkan" element={<Laporkan cookies={cookies}/>} />
           <Route path="/riwayat" element={<Riwayat />} />
           <Route path="/detail-laporan/:id" element={<DetailRiwayat />} />
           <Route path="/laporan" element={<Laporan />} />
