@@ -7,7 +7,7 @@ import ReportForm from '../components/ReportForm';
 import { useState, useEffect } from 'react';
 import "./Laporkan.css";
 
-export default function Laporkan() {
+export default function Laporkan({cookies}) {
   const [isPopUpActive, setPopUpActive] = useState(false);
   const [segmentId, setSegmentId] = useState("0");
   const [latitude, setLatitude] = useState("");
@@ -39,7 +39,7 @@ export default function Laporkan() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <LocateUser changeCoordinate={changeCoordinate}/>
-          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
+          <Segments cookies={cookies} showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
         </MapContainer>
       </div>
       {isPopUpActive && 
@@ -58,21 +58,23 @@ export default function Laporkan() {
   );
 }
 
-function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
+function Segments({cookies, showPopUp, inputSegmentId, latitude, longitude}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
   useEffect(() => {
     fetch('http://127.0.0.1:8000/api/close-segments?' + new URLSearchParams({
       lat: `${latitude}`,
       long: `${longitude}`,
-    }))
+    }), {
+      headers: {Authorization: 'Bearer '+cookies.user_session}
+    })
       .then((res) => {
         return res.json();
       })
       .then((data) => {
         setSegments(data);
       });
-  }, [latitude, longitude]);
+  }, [latitude, longitude, cookies.user_session]);
 
   segments.map((segment) => {
     const geojson = JSON.parse(segment.geojson)
