@@ -1,19 +1,58 @@
-import useLoginForm from "./UseLoginForm";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/login"; // TODO - update to the correct endpoint
 
-const LoginForm = ({setCookie}) => {
+const LoginForm = () => {
+  const [status, setStatus] = useState('');
+  const [message, setMessage] = useState('');
+  const cookies = new Cookies();
+
   let navigate = useNavigate();
 
   const additionalData = {
     sent: new Date().toISOString(),
   };
+  
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setStatus('loading');
+    setMessage('');
 
-  const { handleSubmit, status, message } = useLoginForm({
-    additionalData, setCookie
-  });
+    const finalFormEndpoint = e.target.action;
+    const data = Array.from(e.target.elements)
+      .filter((input) => input.name)
+      .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
+
+    if (additionalData) {
+      Object.assign(data, additionalData);
+    }
+
+    fetch(finalFormEndpoint, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText);
+        }
+
+        return response.json();
+      })
+      .then((data) => {
+        cookies.set('user_session', data.data.jwtToken, { path: '/' })
+        setStatus('success');
+      })
+      .catch((err) => {
+        setMessage(err.toString());
+        setStatus('error');
+      });
+  };
 
   useEffect(() => {
     if (status === "success") {

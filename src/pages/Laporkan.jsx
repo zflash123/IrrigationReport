@@ -5,9 +5,10 @@ import BottomBar from "../components/BottomBar";
 import LocateUser from '../components/LocateUser';
 import ReportForm from '../components/ReportForm';
 import { useState, useEffect } from 'react';
+import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
 
-export default function Laporkan({cookies}) {
+export default function Laporkan() {
   const [isPopUpActive, setPopUpActive] = useState(false);
   const [segmentId, setSegmentId] = useState("0");
   const [latitude, setLatitude] = useState("");
@@ -39,7 +40,7 @@ export default function Laporkan({cookies}) {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <LocateUser changeCoordinate={changeCoordinate}/>
-          <Segments cookies={cookies} showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
+          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
         </MapContainer>
       </div>
       {isPopUpActive && 
@@ -58,15 +59,17 @@ export default function Laporkan({cookies}) {
   );
 }
 
-function Segments({cookies, showPopUp, inputSegmentId, latitude, longitude}) {
+function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
+  
   useEffect(() => {
+    const cookies = new Cookies();
     fetch('http://127.0.0.1:8000/api/close-segments?' + new URLSearchParams({
       lat: `${latitude}`,
       long: `${longitude}`,
     }), {
-      headers: {Authorization: 'Bearer '+cookies.user_session}
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
         return res.json();
@@ -74,7 +77,7 @@ function Segments({cookies, showPopUp, inputSegmentId, latitude, longitude}) {
       .then((data) => {
         setSegments(data);
       });
-  }, [latitude, longitude, cookies.user_session]);
+  }, [latitude, longitude]);
 
   segments.map((segment) => {
     const geojson = JSON.parse(segment.geojson)
