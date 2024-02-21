@@ -3,13 +3,17 @@ import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import "./DetailRiwayat.css";
 import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
 
 export default function DetailRiwayat() {
   const [riwayat, setRiwayat] = useState([]);
   let { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/report/${id}`)
+    const cookies = new Cookies();
+    fetch(`http://127.0.0.1:8000/api/report/${id}`, {
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
+    })
       .then((res) => {
         return res.json();
       })
@@ -30,10 +34,6 @@ export default function DetailRiwayat() {
           <h4>{riwayat.irrigation}</h4>
         </div>
         <div className="report-data">
-          <h4>Tipe:</h4>
-          <h4>{riwayat.tipe}</h4>
-        </div>
-        <div className="report-data">
           <h4>Saluran:</h4>
           <h4>{riwayat.canal}</h4>
         </div>
@@ -46,16 +46,12 @@ export default function DetailRiwayat() {
           <h4>{riwayat.damage_severity}</h4>
         </div>
         <div className="report-data">
-          <h4 className="l_report_coor">Titik Laporan:</h4>
-          <h4 className="report_coor">{riwayat.titik_laporan}</h4>
-        </div>
-        <div className="report-data">
           <h4>Keterangan:</h4>
           <h4>{riwayat.note}</h4>
         </div>
         <div className="report-data">
           <h4>Foto: </h4>
-          <img src={`/img/report/${riwayat.foto}`} width="60%" alt="Foto Irigasi yang Rusak" />
+          <img src={`/img/report/sumber_dandang.jpeg`} width="60%" alt="Foto Irigasi yang Rusak" />
         </div>
       </div>
       <BottomBar activeIcon={"riwayat"}/>
