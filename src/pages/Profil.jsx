@@ -2,12 +2,16 @@ import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import "./Profil.css";
 import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
 
 export default function Profil(){
   const [profil, setProfil] = useState([]);
-
+  
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/profile`)
+    const cookies = new Cookies();
+    fetch(`http://127.0.0.1:8000/api/profile`, {
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
+    })
       .then((res) => {
         return res.json();
       })
