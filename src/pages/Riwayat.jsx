@@ -3,12 +3,16 @@ import BottomBar from "../components/BottomBar";
 import "./Riwayat.css"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
 
 export default function Riwayat(){
   const [riwayats, setRiwayats] = useState([]);
-
+  
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/user-reports')
+    const cookies = new Cookies();
+    fetch('http://127.0.0.1:8000/api/user-reports', {
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
+    })
       .then((res) => {
         return res.json();
       })
