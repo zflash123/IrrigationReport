@@ -40,12 +40,12 @@ const ReportForm = ({segmentId}) => {
       <input type="hidden" name="segment_id" value={segmentId}></input>
       <input type="file" id="myFile" name="photo"></input>
       <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
-      <input type="radio" name="damage_severity" value="ringan"></input>
+      <input type="radio" name="damage_severity" value="Ringan"></input>
       <label htmlFor="html" id="dmg-radio">ringan</label>
-      <input type="radio" name="damage_severity" value="sedang"></input>
+      <input type="radio" name="damage_severity" value="Sedang"></input>
       <label htmlFor="css" id="dmg-radio">sedang</label>
-      <input type="radio" name="damage_severity" value="parah"></input>
-      <label htmlFor="parah" id="dmg-radio">parah</label>
+      <input type="radio" name="damage_severity" value="Berat"></input>
+      <label htmlFor="parah" id="dmg-radio">berat</label>
       <h6 className="h-ad-info">Keterangan Tambahan</h6>
       <textarea className="ad-info" name="note" rows="5"></textarea>
       <div className="div-submit-report">
