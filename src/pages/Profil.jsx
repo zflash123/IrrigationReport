@@ -20,6 +20,26 @@ export default function Profil(){
       });
   }, []);
 
+  function logout() {
+    const cookies = new Cookies();
+    fetch('http://127.0.0.1:8000/api/auth/logout', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Bearer '+cookies.get('user_session')
+      },
+    })
+      .then((response) => {
+        if (response.status !== 200) {
+          throw new Error(response.statusText);
+        }
+        cookies.remove('user_session');
+        return response.json();
+      })
+      .catch((err) => {
+        return err;
+      });
+  }
+
   return(
     <div className="page">
       <TopNavBar />
@@ -28,7 +48,7 @@ export default function Profil(){
           <img className="pp-img" src={profil.avatar} alt="Photo Profile" />
         </div>
         <div className="logout">
-          <button className="logout-button"><b>Logout</b></button>
+          <button className="logout-button" onClick={logout}><b>Logout</b></button>
         </div>
         <div className="edit-data">
           <button className="pencil-button">
