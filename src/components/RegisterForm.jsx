@@ -1,13 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Cookies } from "react-cookie";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/login";
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/register";
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
-  const cookies = new Cookies();
 
   let navigate = useNavigate();
 
@@ -42,10 +40,9 @@ const LoginForm = () => {
           throw new Error(response.statusText);
         }
 
-        return response.json();
+        return null;
       })
-      .then((data) => {
-        cookies.set('user_session', data.data.jwtToken, { path: '/' })
+      .then(() => {
         setStatus('success');
       })
       .catch((err) => {
@@ -56,7 +53,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (status === "success") {
-      navigate("/laporkan");
+      navigate("/login");
     }
   }, [status, navigate]);
 
@@ -76,15 +73,16 @@ const LoginForm = () => {
       method="POST"
       encType="multipart/form-data"
     >
-      <input type="text" name="email" className="form-input" id="email" placeholder="email"/>
-      <input type="password" name="password" className="form-input" id="password" placeholder="password"/>
-      <div id="forgot-pwd">
-        <a href="/lupa-password">Lupa password?</a><br />
-      </div>
-      <button className="login-button" type="submit">Login</button><br />
-      <a href="/register" id="register-link">Belum punya akun? klik untuk daftar</a>
+      <input type="text" name="username" className="r-form-input" id="register-username" placeholder="Username" />
+      <input type="text" name="email" className="r-form-input" id="register-email" placeholder="Email" />
+      <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" />
+      <input type="text" name="fullname" className="r-form-input" id="register-fullname" placeholder="Nama Lengkap" />
+      <input type="text" name="shortname" className="r-form-input" id="register-shortname" placeholder="Nama Panggilan" />
+      <input type="text" name="phone" className="r-form-input" id="register-phone" placeholder="Nomor Telepon" />
+      <input type="hidden" name="urole_id" value={"7076f925-ec51-48c7-8b3b-e33709bb1ffe"}/>
+      <button className="register-button">Register</button>
     </form>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

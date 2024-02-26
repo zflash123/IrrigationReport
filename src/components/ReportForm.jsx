@@ -1,6 +1,6 @@
 import useForm from "./UseForm";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report"; // TODO - update to the correct endpoint
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report";
 
 const ReportForm = ({segmentId}) => {
   const additionalData = {
