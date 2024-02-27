@@ -1,0 +1,9 @@
+.e-content {
+  flex: 1;
+}
+
+.e-i-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

@@ -14,6 +14,7 @@ import Riwayat from './pages/Riwayat';
 import Laporan from './pages/Laporan';
 import Profil from './pages/Profil';
 import DetailRiwayat from './pages/DetailRiwayat';
+import EditProfil from './pages/EditProfil';
 import { CookiesProvider } from 'react-cookie'
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
           <Route path="/detail-laporan/:id" element={<DetailRiwayat />} />
           <Route path="/laporan" element={<Laporan />} />
           <Route path="/profil" element={<Profil />} />
+          <Route path="/edit-profil" element={<EditProfil />} />
         </Routes>
       </Router>
     </CookiesProvider>

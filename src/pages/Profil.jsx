@@ -3,10 +3,12 @@ import BottomBar from "../components/BottomBar";
 import "./Profil.css";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
+import { useNavigate } from 'react-router-dom';
 
 export default function Profil(){
   const [profil, setProfil] = useState([]);
-  
+  let navigate = useNavigate();
+
   useEffect(() => {
     const cookies = new Cookies();
     fetch(`http://127.0.0.1:8000/api/profile`, {
@@ -33,13 +35,18 @@ export default function Profil(){
           throw new Error(response.statusText);
         }
         cookies.remove('user_session');
-        return response.json();
+        navigate("/login");
+        return null;
       })
       .catch((err) => {
         return err;
       });
   }
 
+  function redirect() {
+    navigate("/edit-profil")
+  }
+  
   return(
     <div className="page">
       <TopNavBar />
@@ -51,7 +58,7 @@ export default function Profil(){
           <button className="logout-button" onClick={logout}><b>Logout</b></button>
         </div>
         <div className="edit-data">
-          <button className="pencil-button">
+          <button className="pencil-button" onClick={redirect}>
             <img src="/img/pencil-icon.png" width="35rem" alt="" />
           </button>
         </div> 
