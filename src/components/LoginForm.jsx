@@ -10,10 +10,6 @@ const LoginForm = () => {
   const cookies = new Cookies();
 
   let navigate = useNavigate();
-
-  const additionalData = {
-    sent: new Date().toISOString(),
-  };
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,10 +20,6 @@ const LoginForm = () => {
     const data = Array.from(e.target.elements)
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
-
-    if (additionalData) {
-      Object.assign(data, additionalData);
-    }
 
     fetch(finalFormEndpoint, {
       method: 'POST',
