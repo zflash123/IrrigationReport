@@ -43,7 +43,7 @@ export default function DetailRiwayat() {
         </div>
         <div className="report-data">
           <h4>Tingkat Kerusakan:</h4>
-          <h4>{riwayat.damage_severity}</h4>
+          <h4>{riwayat.level}</h4>
         </div>
         <div className="report-data">
           <h4>Keterangan:</h4>

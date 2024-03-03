@@ -1,6 +1,7 @@
 import { useState } from "react";
+import { Cookies } from "react-cookie";
 
-function useForm({ additionalData }) {
+function useForm({ changeCount }) {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
 
@@ -8,21 +9,18 @@ function useForm({ additionalData }) {
     e.preventDefault();
     setStatus('loading');
     setMessage('');
+    changeCount(1);
 
     const finalFormEndpoint = e.target.action;
     const data = Array.from(e.target.elements)
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
-
-    if (additionalData) {
-      Object.assign(data, additionalData);
-    }
-
+    const cookies = new Cookies();
     fetch(finalFormEndpoint, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
         'Content-Type': 'application/json',
+        Authorization: 'Bearer '+cookies.get('user_session')
       },
       body: JSON.stringify(data),
     })

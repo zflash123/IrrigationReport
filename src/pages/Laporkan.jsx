@@ -3,7 +3,7 @@ import L from 'leaflet';
 import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import LocateUser from '../components/LocateUser';
-import ReportForm from '../components/ReportForm';
+import ReportForms from '../components/ReportForms';
 import { useState, useEffect } from 'react';
 import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
@@ -13,6 +13,13 @@ export default function Laporkan() {
   const [segmentId, setSegmentId] = useState("0");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
+  const [count, setCount] = useState(1);
+  const [segmentId1, setSegmentId1] = useState("");
+  const [level1, setLevel1] = useState("");
+  const [note1, setNote1] = useState("");
+  const [segmentId2, setSegmentId2] = useState("");
+  const [level2, setLevel2] = useState("");
+  const [note2, setNote2] = useState("");
 
   function changeCoordinate(latitude, longitude) {
     setLatitude(latitude);
@@ -23,6 +30,34 @@ export default function Laporkan() {
   }
   function showPopUp() {
     setPopUpActive(true);
+  }
+  function changeCount(num) {
+    setCount(num)
+    if(num===4){
+      setCount(1);
+    }
+    setPopUpActive(false);
+  }
+  function changeSegmentId1(value) {
+    setSegmentId1(value);
+  }
+  function changeLevel1(value) {
+    setLevel1(value);
+  }
+  function changeNote1(value) {
+    setNote1(value);
+  }
+  function changeSegmentId2(value) {
+    setSegmentId2(value);
+  }
+  function changeLevel2(value) {
+    setLevel2(value);
+  }
+  function changeNote2(value) {
+    setNote2(value);
+  }
+  function hidePopUp() {
+    setPopUpActive(false);
   }
   return (
     <div className="page">
@@ -43,16 +78,16 @@ export default function Laporkan() {
           <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
         </MapContainer>
       </div>
-      {isPopUpActive && 
-      <>
-        <div className="popup-bg">
-        </div>
-        <div className="popup">
-          <h3 className="h-info">Informasi Laporan</h3>
-          <ReportForm segmentId={segmentId}/>
-        </div>
-      </>
-      
+      { isPopUpActive ?
+          <>
+            <div className="popup-bg" onClick={() => hidePopUp()}>
+            </div>
+            <div className="popup">
+              <h3 className="h-info">Informasi Laporan</h3>
+              <ReportForms segmentId={segmentId} count={count} changeCount={changeCount} segmentId1={segmentId1} level1={level1} note1={note1} changeSegmentId1={changeSegmentId1} changeLevel1={changeLevel1} changeNote1={changeNote1} segmentId2={segmentId2} level2={level2} note2={note2} changeSegmentId2={changeSegmentId2} changeLevel2={changeLevel2} changeNote2={changeNote2}/>
+            </div>
+          </>
+          : <></>
       }
       <BottomBar activeIcon={"laporkan"}/>
     </div>
