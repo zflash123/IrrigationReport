@@ -2,29 +2,17 @@ import useForm from "./UseForm";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report";
 
-const ReportForm3 = ({segmentId, count, changeCount, segmentId1, level1, note1, segmentId2, level2, note2}) => {
-  const { handleSubmit, status, message } = useForm({
+const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1, segmentId2, image2, level2, note2, image3, changeImage3}) => {
+  const { handleSubmit } = useForm({
     changeCount
   });
-
-  if (status === "success") {
-    return (
-      <>
-        <div>Thank you!</div>
-        <div>{message}</div>
-      </>
-    );
+  function handleImage(e) {
+    var reader = new FileReader();
+    reader.onload = function(image) {
+      changeImage3(image.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
   }
-
-  if (status === "error") {
-    return (
-      <>
-        <div>Something bad happened!</div>
-        <div>{message}</div>
-      </>
-    );
-  }
-
   return (
     <form
       action={FORM_ENDPOINT}
@@ -34,13 +22,16 @@ const ReportForm3 = ({segmentId, count, changeCount, segmentId1, level1, note1, 
     >
       <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak3</h6>
       <input type="hidden" name="segment_id1" value={segmentId1}></input>
+      <input type="hidden" name="image1" value={image1}></input>
       <input type="hidden" name="level1" value={level1}></input>
       <input type="hidden" name="note1" value={note1}></input>
       <input type="hidden" name="segment_id2" value={segmentId2}></input>
+      <input type="hidden" name="image2" value={image2}></input>
       <input type="hidden" name="level2" value={level2}></input>
       <input type="hidden" name="note2" value={note2}></input>
       <input type="hidden" name="segment_id3" value={segmentId}></input>
-      <input type="file" id="myFile" name="photo"></input>
+      <input type="file" id="myFile" name="photo" accept="image/*" onChange={(e)=>handleImage(e)}></input>
+      <input type="hidden" name="image3" value={image3}></input>
       <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
       <input type="radio" name="level3" value="Ringan"></input>
       <label htmlFor="html" id="dmg-radio">ringan</label>
@@ -53,7 +44,6 @@ const ReportForm3 = ({segmentId, count, changeCount, segmentId1, level1, note1, 
       <div className="div-submit-report">
         <button className="submit-report" type="submit">Kumpulkan Laporan</button>
       </div>
-      <button onClick={() => {changeCount(count+1);}}>Laporkan lainnya</button>
     </form>
   );
 };

@@ -7,6 +7,8 @@ import ReportForms from '../components/ReportForms';
 import { useState, useEffect } from 'react';
 import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Laporkan() {
   const [isPopUpActive, setPopUpActive] = useState(false);
@@ -15,11 +17,14 @@ export default function Laporkan() {
   const [longitude, setLongitude] = useState("");
   const [count, setCount] = useState(1);
   const [segmentId1, setSegmentId1] = useState("");
+  const [image1, setImage1] = useState("");
   const [level1, setLevel1] = useState("");
   const [note1, setNote1] = useState("");
   const [segmentId2, setSegmentId2] = useState("");
+  const [image2, setImage2] = useState("");
   const [level2, setLevel2] = useState("");
   const [note2, setNote2] = useState("");
+  const [image3, setImage3] = useState("");
 
   function changeCoordinate(latitude, longitude) {
     setLatitude(latitude);
@@ -36,10 +41,13 @@ export default function Laporkan() {
     if(num===4){
       setCount(1);
     }
-    setPopUpActive(false);
+    hidePopUp();
   }
   function changeSegmentId1(value) {
     setSegmentId1(value);
+  }
+  function changeImage1(value) {
+    setImage1(value);
   }
   function changeLevel1(value) {
     setLevel1(value);
@@ -50,17 +58,24 @@ export default function Laporkan() {
   function changeSegmentId2(value) {
     setSegmentId2(value);
   }
+  function changeImage2(value) {
+    setImage2(value);
+  }
   function changeLevel2(value) {
     setLevel2(value);
   }
   function changeNote2(value) {
     setNote2(value);
   }
+  function changeImage3(value) {
+    setImage3(value);
+  }
   function hidePopUp() {
     setPopUpActive(false);
   }
   return (
     <div className="page">
+      <ToastContainer autoClose={4000} theme="colored"/>
       <TopNavBar />
       <div className="leaflet-container">
         <MapContainer
@@ -84,7 +99,14 @@ export default function Laporkan() {
             </div>
             <div className="popup">
               <h3 className="h-info">Informasi Laporan</h3>
-              <ReportForms segmentId={segmentId} count={count} changeCount={changeCount} segmentId1={segmentId1} level1={level1} note1={note1} changeSegmentId1={changeSegmentId1} changeLevel1={changeLevel1} changeNote1={changeNote1} segmentId2={segmentId2} level2={level2} note2={note2} changeSegmentId2={changeSegmentId2} changeLevel2={changeLevel2} changeNote2={changeNote2}/>
+              <ReportForms 
+                segmentId={segmentId} count={count} changeCount={changeCount}
+                segmentId1={segmentId1} image1={image1} level1={level1} note1={note1}
+                changeSegmentId1={changeSegmentId1} changeImage1={changeImage1} changeLevel1={changeLevel1} changeNote1={changeNote1}
+                segmentId2={segmentId2} image2={image2} level2={level2} note2={note2}
+                changeSegmentId2={changeSegmentId2} changeImage2={changeImage2} changeLevel2={changeLevel2} changeNote2={changeNote2}
+                image3={image3} changeImage3={changeImage3}
+              />
             </div>
           </>
           : <></>

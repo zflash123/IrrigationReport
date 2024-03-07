@@ -1,15 +1,12 @@
-import { useState } from "react";
 import { Cookies } from "react-cookie";
+import { toast } from 'react-toastify';
 
 function useForm({ changeCount }) {
-  const [status, setStatus] = useState('');
-  const [message, setMessage] = useState('');
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus('loading');
-    setMessage('');
-    changeCount(1);
+    const id = toast.loading("Mohon tunggu sebentar...", {
+      position: "top-center"
+    });
 
     const finalFormEndpoint = e.target.action;
     const data = Array.from(e.target.elements)
@@ -25,25 +22,22 @@ function useForm({ changeCount }) {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        const data = response.json();
-        console.log(data);
         if (response.status !== 200) {
           throw new Error(response.statusText);
         }
-
         return null;
       })
       .then(() => {
-        setMessage("We'll be in touch soon.");
-        setStatus('success');
+        toast.update(id, { render: "Data Laporanmu Berhasil Terkirim", type: "success", isLoading: false, autoClose: 4000 });
       })
       .catch((err) => {
-        setMessage(err.toString());
-        setStatus('error');
+        toast.update(id, { render: "Data Laporanmu Gagal Terkirim", type: "error", isLoading: false, autoClose: 4000 });
+        console.log(err.toString());
       });
+    changeCount(1);
   };
 
-  return { handleSubmit, status, message };
+  return { handleSubmit };
 }
 
 export default useForm;
