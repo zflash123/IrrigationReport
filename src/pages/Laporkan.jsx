@@ -7,11 +7,13 @@ import ReportForms from '../components/ReportForms';
 import { useState, useEffect } from 'react';
 import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingPopUp from '../components/LoadingPopUp';
 
 export default function Laporkan() {
   const [isPopUpActive, setPopUpActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [segmentId, setSegmentId] = useState("0");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -73,6 +75,11 @@ export default function Laporkan() {
   function hidePopUp() {
     setPopUpActive(false);
   }
+  function changeIsLoading(value) {
+    if(isLoading!=value){
+      setIsLoading(value);
+    }
+  }
   return (
     <div className="page">
       <ToastContainer autoClose={4000} theme="colored"/>
@@ -90,7 +97,7 @@ export default function Laporkan() {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <LocateUser changeCoordinate={changeCoordinate}/>
-          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude}/>
+          <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude} changeIsLoading={changeIsLoading}/>
         </MapContainer>
       </div>
       { isPopUpActive ?
@@ -111,16 +118,27 @@ export default function Laporkan() {
           </>
           : <></>
       }
+      { isLoading ?
+        <>
+          <LoadingPopUp/>
+        </>
+        :<></>
+      }
       <BottomBar activeIcon={"laporkan"}/>
     </div>
   );
 }
 
-function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
+function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoading}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
   
+  function changeSegments(data) {
+    setSegments(data);
+    changeIsLoading(false);
+  }
   useEffect(() => {
+    changeIsLoading(true);
     const cookies = new Cookies();
     fetch('http://127.0.0.1:8000/api/close-segments?' + new URLSearchParams({
       lat: `${latitude}`,
@@ -132,7 +150,12 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude}) {
         return res.json();
       })
       .then((data) => {
-        setSegments(data);
+        changeSegments(data);
+      })
+      .catch((err) => {
+        changeIsLoading(false);
+        toast.error("Gagal mengambil data");
+        console.log(err.toString());
       });
   }, [latitude, longitude]);
 
