@@ -4,9 +4,11 @@ import "./Profil.css";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import { useNavigate } from 'react-router-dom';
+import LoadingPopUp from '../components/LoadingPopUp';
 
 export default function Profil(){
   const [profil, setProfil] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -19,10 +21,12 @@ export default function Profil(){
       })
       .then((data) => {
         setProfil(data);
+        setIsLoading(false);
       });
   }, []);
 
   function logout() {
+    setIsLoading(true);
     const cookies = new Cookies();
     fetch('http://127.0.0.1:8000/api/auth/logout', {
       method: 'POST',
@@ -35,6 +39,7 @@ export default function Profil(){
           throw new Error(response.statusText);
         }
         cookies.remove('user_session');
+        setIsLoading(false);
         navigate("/login");
         return null;
       })
@@ -83,6 +88,12 @@ export default function Profil(){
           <h5>{profil.phone}</h5>
         </div>
       </div>
+      { isLoading ?
+        <>
+          <LoadingPopUp/>
+        </>
+        :<></>
+      }
       <BottomBar activeIcon={"profil"} />
     </div>
   );
