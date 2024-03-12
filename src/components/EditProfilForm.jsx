@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/register";
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/profile";
 
 const EditProfilForm = () => {
   const [status, setStatus] = useState('');
@@ -38,11 +38,13 @@ const EditProfilForm = () => {
     const data = Array.from(e.target.elements)
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
-
+    
+    const cookies = new Cookies();
     fetch(finalFormEndpoint, {
-      method: 'POST',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer '+cookies.get('user_session')
       },
       body: JSON.stringify(data),
     })
@@ -64,7 +66,7 @@ const EditProfilForm = () => {
 
   useEffect(() => {
     if (status === "success") {
-      navigate("/login");
+      navigate("/profil");
     }
   }, [status, navigate]);
 
@@ -81,10 +83,9 @@ const EditProfilForm = () => {
     <form
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
-      method="POST"
+      method="PUT"
       encType="multipart/form-data"
     >
-      <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" />
       <input type="text" name="fullname" className="r-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
       <input type="text" name="shortname" className="r-form-input" id="register-shortname" value={shortname} onChange={e => setShortname(e.target.value)}/>
       <input type="text" name="phone" className="r-form-input" id="register-phone" value={phone} onChange={e => setPhone(e.target.value)}/>
