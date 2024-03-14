@@ -1,4 +1,5 @@
 import useForm from "./UseForm";
+import { useState } from "react";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report";
 
@@ -13,6 +14,8 @@ const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1,
     }
     reader.readAsDataURL(e.target.files[0]);
   }
+  const [level3, setLevel3] = useState("");
+
   return (
     <form
       action={FORM_ENDPOINT}
@@ -33,12 +36,13 @@ const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1,
       <input type="file" id="myFile" name="photo" accept="image/*" onChange={(e)=>handleImage(e)}></input>
       <input type="hidden" name="image3" value={image3}></input>
       <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
-      <input type="radio" name="level3" value="Ringan"></input>
+      <input type="radio" name="level3" value="Ringan" onChange={e => setLevel3(e.target.value)}></input>
       <label htmlFor="html" id="dmg-radio">ringan</label>
-      <input type="radio" name="level3" value="Sedang"></input>
+      <input type="radio" name="level3" value="Sedang" onChange={e => setLevel3(e.target.value)}></input>
       <label htmlFor="css" id="dmg-radio">sedang</label>
-      <input type="radio" name="level3" value="Berat"></input>
+      <input type="radio" name="level3" value="Berat" onChange={e => setLevel3(e.target.value)}></input>
       <label htmlFor="parah" id="dmg-radio">berat</label>
+      <input type="hidden" name="level3" value={level3}></input>
       <h6 className="h-ad-info">Keterangan Tambahan</h6>
       <textarea className="ad-info" name="note3" rows="5"></textarea>
       <div className="div-submit-report">

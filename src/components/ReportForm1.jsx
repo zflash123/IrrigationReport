@@ -2,7 +2,7 @@ import useForm from "./UseForm";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report";
 
-const ReportForm1 = ({count, segmentId1, image1, changeCount, changeImage1, changeLevel1, changeNote1}) => {
+const ReportForm1 = ({count, segmentId1, level1, image1, changeCount, changeImage1, changeLevel1, changeNote1}) => {
   const { handleSubmit } = useForm({
     changeCount
   });
@@ -34,6 +34,7 @@ const ReportForm1 = ({count, segmentId1, image1, changeCount, changeImage1, chan
       <label htmlFor="css" id="dmg-radio">sedang</label>
       <input type="radio" name="level1" value="Berat" onChange={e => changeLevel1(e.target.value)}></input>
       <label htmlFor="parah" id="dmg-radio">berat</label>
+      <input type="hidden" name="level1" value={level1}></input>
       <h6 className="h-ad-info">Keterangan Tambahan</h6>
       <textarea className="ad-info" name="note1" rows="5" onChange={e => changeNote1(e.target.value)}></textarea>
       <div className="div-submit-report">
