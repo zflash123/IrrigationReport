@@ -4,9 +4,11 @@ import "./Riwayat.css"
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
+import LoadingPopUp from "../components/LoadingPopUp";
 
 export default function Riwayat(){
   const [riwayats, setRiwayats] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     const cookies = new Cookies();
@@ -18,6 +20,7 @@ export default function Riwayat(){
       })
       .then((data) => {
         setRiwayats(data);
+        setIsLoading(false);
       });
   }, []);
 
@@ -40,6 +43,12 @@ export default function Riwayat(){
           </div>
         ))}
       </div>
+      { isLoading ?
+        <>
+          <LoadingPopUp/>
+        </>
+        :<></>
+      }
       <BottomBar activeIcon={"riwayat"} />
     </div>
   );

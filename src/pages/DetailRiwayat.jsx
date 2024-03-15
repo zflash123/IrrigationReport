@@ -5,9 +5,11 @@ import "./DetailRiwayat.css";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import { Link } from "react-router-dom";
+import LoadingPopUp from "../components/LoadingPopUp";
 
 export default function DetailRiwayat() {
   const [riwayat, setRiwayat] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   let { id } = useParams();
   let { segment } = useParams();
   segment = parseInt(segment);
@@ -21,6 +23,7 @@ export default function DetailRiwayat() {
       })
       .then((data) => {
         setRiwayat(data);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err.toString());
@@ -79,6 +82,12 @@ export default function DetailRiwayat() {
         </div>
         </>:<></>}
       </div>
+      { isLoading ?
+        <>
+          <LoadingPopUp/>
+        </>
+        :<></>
+      }
       <BottomBar activeIcon={"riwayat"}/>
     </div>
   )
