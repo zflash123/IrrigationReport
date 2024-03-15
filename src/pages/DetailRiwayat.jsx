@@ -35,15 +35,15 @@ export default function DetailRiwayat() {
           <form className="container-fluid justify-content-around">
             {riwayat.length===2?
             <>
-              <Link to={`/detail-laporan/${id}/0`} className="btn btn-outline-success me-2" type="button">Lokasi 1</Link>
-              <Link to={`/detail-laporan/${id}/1`} className="btn btn-outline-success me-2" type="button">Lokasi 2</Link>
+              <Link to={`/detail-laporan/${id}/0`} className={"btn btn-outline-success me-2"+(segment===0?" active":"")} type="button">Lokasi 1</Link>
+              <Link to={`/detail-laporan/${id}/1`} className={"btn btn-outline-success me-2"+(segment===1?" active":"")} type="button">Lokasi 2</Link>
             </>
             :<></>}
             {riwayat.length===3?
             <>
-              <Link to={`/detail-laporan/${id}/0`} className="btn btn-outline-success me-2" type="button">Lokasi 1</Link>
-              <Link to={`/detail-laporan/${id}/1`} className="btn btn-outline-success me-2" type="button">Lokasi 2</Link>
-              <Link to={`/detail-laporan/${id}/2`} className="btn btn-outline-success me-2" type="button">Lokasi 3</Link>
+              <Link to={`/detail-laporan/${id}/0`} className={"btn btn-outline-success me-2"+(segment===0?" active":"")} type="button">Lokasi 1</Link>
+              <Link to={`/detail-laporan/${id}/1`} className={"btn btn-outline-success me-2"+(segment===1?" active":"")} type="button">Lokasi 2</Link>
+              <Link to={`/detail-laporan/${id}/2`} className={"btn btn-outline-success me-2"+(segment===2?" active":"")} type="button">Lokasi 3</Link>
             </>
             :<></>}
           </form>
