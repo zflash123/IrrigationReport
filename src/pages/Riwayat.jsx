@@ -33,7 +33,7 @@ export default function Riwayat(){
       <TopNavBar />
       <div className="content">
         {riwayats.map((riwayat) => (
-          <div className="riwayat-box" key={riwayat.id} onClick={() => toDetailPage(riwayat.id)}>
+          <div className="riwayat-box" key={riwayat.id} onClick={() => toDetailPage(riwayat.id+"/0")}>
             <h3>Nama Irigasi: {riwayat.irrigation}</h3>
             <h3>Saluran: {riwayat.canal}</h3>
             <h3>Status: {riwayat.status}</h3>
