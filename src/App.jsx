@@ -16,20 +16,25 @@ import Profil from './pages/Profil';
 import DetailRiwayat from './pages/DetailRiwayat';
 import EditProfil from './pages/EditProfil';
 import { CookiesProvider } from 'react-cookie'
+import Protected from './components/Protected';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
     <CookiesProvider>
       <Router>
+        <ToastContainer autoClose={4000} theme="colored"/>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/laporkan" element={<Laporkan/>} />
-          <Route path="/riwayat" element={<Riwayat />} />
-          <Route path="/detail-laporan/:id/:segment" element={<DetailRiwayat />} />
-          <Route path="/laporan" element={<Laporan />} />
-          <Route path="/profil" element={<Profil />} />
-          <Route path="/edit-profil" element={<EditProfil />} />
+          <Route element={<Protected/>}>
+            <Route path="/laporkan" element={<Laporkan/>} />
+            <Route path="/riwayat" element={<Riwayat />} />
+            <Route path="/detail-laporan/:id/:segment" element={<DetailRiwayat />} />
+            <Route path="/laporan" element={<Laporan />} />
+            <Route path="/profil" element={<Profil />} />
+            <Route path="/edit-profil" element={<EditProfil />} />
+          </Route>
         </Routes>
       </Router>
     </CookiesProvider>

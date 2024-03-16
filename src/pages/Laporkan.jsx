@@ -7,7 +7,7 @@ import ReportForms from '../components/ReportForms';
 import { useState, useEffect } from 'react';
 import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoadingPopUp from '../components/LoadingPopUp';
 
@@ -82,7 +82,6 @@ export default function Laporkan() {
   }
   return (
     <div className="page">
-      <ToastContainer autoClose={4000} theme="colored"/>
       <TopNavBar />
       <div className="leaflet-container">
         <MapContainer
