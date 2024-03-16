@@ -26,14 +26,14 @@ const ReportForm2 = ({segmentId, count, changeCount, segmentId1, level1, note1, 
       <input type="hidden" name="note1" value={note1}></input>
       <input type="hidden" name="image1" value={image1}></input>
       <input type="hidden" name="segment_id2" value={segmentId}></input>
-      <input type="file" id="myFile" name="photo2" accept="image/*" onChange={(e)=>handleImage(e)}></input>
+      <input type="file" id="myFile" name="photo2" accept="image/*" onChange={(e)=>handleImage(e)} required></input>
       <input type="hidden" name="image2" value={image2}></input>
       <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
-      <input type="radio" name="level2" value="Ringan" onChange={e => changeLevel2(e.target.value)}></input>
+      <input type="radio" name="level2" value="Ringan" onChange={e => changeLevel2(e.target.value)} required></input>
       <label htmlFor="html" id="dmg-radio">ringan</label>
-      <input type="radio" name="level2" value="Sedang" onChange={e => changeLevel2(e.target.value)}></input>
+      <input type="radio" name="level2" value="Sedang" onChange={e => changeLevel2(e.target.value)} required></input>
       <label htmlFor="css" id="dmg-radio">sedang</label>
-      <input type="radio" name="level2" value="Berat" onChange={e => changeLevel2(e.target.value)}></input>
+      <input type="radio" name="level2" value="Berat" onChange={e => changeLevel2(e.target.value)} required></input>
       <label htmlFor="parah" id="dmg-radio">berat</label>
       <input type="hidden" name="level2" value={level2}></input>
       <h6 className="h-ad-info">Keterangan Tambahan</h6>
