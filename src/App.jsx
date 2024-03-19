@@ -30,7 +30,7 @@ function App() {
           <Route element={<Protected/>}>
             <Route path="/laporkan" element={<Laporkan/>} />
             <Route path="/riwayat" element={<Riwayat />} />
-            <Route path="/detail-laporan/:id/:segment" element={<DetailRiwayat />} />
+            <Route path="/detail-alaporan/:id/:segment" element={<DetailRiwayat />} />
             <Route path="/laporan" element={<Laporan />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/edit-profil" element={<EditProfil />} />

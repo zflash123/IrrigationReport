@@ -3,36 +3,40 @@ import L from 'leaflet';
 import TopNavBar from "../components/TopNavBar";
 import BottomBar from "../components/BottomBar";
 import LocateUser from '../components/LocateUser';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Cookies } from 'react-cookie';
+import { toast } from 'react-toastify';
 
-const laporans = [
-  {
-    id: 1,
-    nama_irigasi: "Sumber Dandang",
-    tipe: "Drempel",
-    saluran: "Primer",
-    status: "Perbaikan",
-    tingkat_kerusakan: "Sedang",
-    segment_laporan: [[-6.307890204742042, 106.64950966651874	], [-6.308071490699305, 106.6494774800112]],
-    keterangan: "Ambrol",
-    foto: "sumber_dandang.jpeg"
-  },
-  {
-    id: 2,
-    nama_irigasi: "Kasinan 3",
-    saluran: "Tersier",
-    status: "Ditolak",
-    segment_laporan: [[-7.869905280908956, 112.525608403846], [-7.870032814327598, 112.52537236945734]],
-  },
-  {
-    id: 3,
-    nama_irigasi: "Lohdengkol",
-    saluran: "Sekunder",
-    status: "Ditindak Lanjuti",
-    segment_laporan: [[-7.870766130723222, 112.52509341972532], [-7.8702772532703, 112.52544747130828]],
-  },
-]
 export default function Laporan(){
+	const [latitude, setLatitude] = useState("");
+  const [longitude, setLongitude] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isPopUpActive, setPopUpActive] = useState(false);
+	const [segments, setSegments] = useState([]);
+	const [segment, setSegment] = useState();
+
+	function showPopUp() {
+		setPopUpActive(true);
+	}
+	function hidePopUp() {
+		setPopUpActive(false);
+	}
+	function changeSegments(data) {
+    setSegments(data);
+    changeIsLoading(false);
+  }
+	function changeSegment(data) {
+		setSegment(data);
+	}
+	function changeCoordinate(latitude, longitude) {
+    setLatitude(latitude);
+    setLongitude(longitude);
+  }
+	function changeIsLoading(value) {
+    if(isLoading!=value){
+      setIsLoading(value);
+    }
+  }
 	return(
 		<div className="page">
 			<TopNavBar />
@@ -48,35 +52,72 @@ export default function Laporan(){
 					<TileLayer
 						url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
 					/>
-					<LocateUser />
-					<Segments />
+					<LocateUser changeCoordinate={changeCoordinate}/>
+					<Segments segments={segments} latitude={latitude} longitude={longitude} showPopUp={showPopUp} changeSegments={changeSegments} changeSegment={changeSegment} changeIsLoading={changeIsLoading}/>
 				</MapContainer>
 			</div>
+			{isPopUpActive?<ShowPopUp segment={segment} hidePopUp={hidePopUp}/>:<></>}
 			<BottomBar activeIcon={"laporan"}/>
 		</div>
 	);
 }
 
-function Segments() {
-	let navigate = useNavigate();
-
+function Segments({segments, showPopUp, latitude, longitude, changeIsLoading, changeSegments, changeSegment}) {
   const map = useMap();
-	laporans.map((laporan) => {
-		var pointA = new L.LatLng(laporan.segment_laporan[0][0], laporan.segment_laporan[0][1]);
-		var pointB = new L.LatLng(laporan.segment_laporan[1][0], laporan.segment_laporan[1][1]);
+  
+	useEffect(() => {
+    changeIsLoading(true);
+    const cookies = new Cookies();
+    fetch('http://127.0.0.1:8000/api/segments-by-user-id?' + new URLSearchParams({
+      lat: `${latitude}`,
+      long: `${longitude}`,
+    }), {
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        changeSegments(data);
+      })
+      .catch((err) => {
+        changeIsLoading(false);
+        toast.error("Gagal mengambil data");
+        console.log(err.toString());
+      });
+  }, [latitude, longitude]);
+
+	segments.map((segment) => {
+		const geojson = JSON.parse(segment.geojson)
+		var pointA = new L.LatLng(geojson.coordinates[0][1], geojson.coordinates[0][0]);
+		var pointB = new L.LatLng(geojson.coordinates[1][1], geojson.coordinates[1][0]);
 		var pointList = [pointA, pointB];
-		console.log(pointList);
 	
-		var segment = new L.Polyline(pointList, {
+		var segmentLine = new L.Polyline(pointList, {
 			color: 'aqua',
 			weight: 5,
 			opacity: 0.5,
 			smoothFactor: 1
 		});
-		segment.on("click", function() {
-			navigate("/detail-laporan/"+laporan.id);
+		segmentLine.on("click", function() {
+			changeSegment(segment);
+			showPopUp();
 		})
-		segment.addTo(map);
+		segmentLine.addTo(map);
 	})
-
+}
+function ShowPopUp({segment, hidePopUp}) {
+	return(
+		<>
+			<div className="popup-bg" onClick={() => hidePopUp()}>
+			</div>
+			<div className="popup">
+				<h3 className="h-info">Informasi Laporan</h3>
+				<h5>Nama Irigasi: {segment.irrigation}</h5>
+				<h5>Saluran: {segment.canal}</h5>
+				<h5>Status: {segment.status}</h5>
+				<h5>Tingkat Kerusakan: {segment.level}</h5>
+			</div>
+		</>
+	)
 }
