@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/forgot-password";
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/change-password";
 
-const ForgotPasswordForm = () => {
+const ChangePasswordForm = () => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
 
@@ -46,7 +46,7 @@ const ForgotPasswordForm = () => {
 
   useEffect(() => {
     if (status === "success") {
-      toast.success("Cek email anda untuk petunjuk ganti password")
+      toast.success("Password anda berhasil diganti")
     }
   }, [status, navigate]);
 
@@ -62,10 +62,11 @@ const ForgotPasswordForm = () => {
       method="POST"
       encType="application/x-www-form-urlencoded"
     >
-      <input type="text" name="email" className="form-input" id="email" placeholder="email"/>
+      <input type="text" name="new_pwd" className="form-input" id="email" placeholder="Password Baru"/>
+      <input type="text" name="repeat_pwd" className="form-input" id="email" placeholder="Ulangi Password Baru"/>
       <button className="forgot-button" type="submit">Kirimkan</button>
     </form>
   );
 };
 
-export default ForgotPasswordForm;
+export default ChangePasswordForm;
