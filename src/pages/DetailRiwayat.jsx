@@ -78,7 +78,7 @@ export default function DetailRiwayat() {
         </div>
         <div className="report-data">
           <h4>Foto: </h4>
-          <img src={`/img/report/sumber_dandang.jpeg`} width="60%" alt="Foto Irigasi yang Rusak" />
+          <img src={riwayat[segment].image} width="60%" alt="Foto Irigasi yang Rusak" />
         </div>
         </>:<></>}
       </div>
