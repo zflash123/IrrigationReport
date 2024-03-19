@@ -9,6 +9,8 @@ import {
 
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ChangePassword from './pages/ChangePassword';
 import Laporkan from './pages/Laporkan';
 import Riwayat from './pages/Riwayat';
 import Laporan from './pages/Laporan';
@@ -27,10 +29,12 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/lupa-password" element={<ForgotPassword />} />
+          <Route path="/ganti-password/:token" element={<ChangePassword />} />
           <Route element={<Protected/>}>
             <Route path="/laporkan" element={<Laporkan/>} />
             <Route path="/riwayat" element={<Riwayat />} />
-            <Route path="/detail-alaporan/:id/:segment" element={<DetailRiwayat />} />
+            <Route path="/detail-laporan/:id/:segment" element={<DetailRiwayat />} />
             <Route path="/laporan" element={<Laporan />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/edit-profil" element={<EditProfil />} />
