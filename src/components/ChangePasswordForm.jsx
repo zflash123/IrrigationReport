@@ -1,12 +1,15 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/change-password";
+const FORM_ENDPOINT = "http://127.0.0.1:8000/api/reset-password";
 
 const ChangePasswordForm = () => {
+  const { token } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
+  const email = searchParams.get("email");
 
   let navigate = useNavigate();
   
@@ -46,14 +49,14 @@ const ChangePasswordForm = () => {
 
   useEffect(() => {
     if (status === "success") {
-      toast.success("Password anda berhasil diganti")
+      toast.success("Password anda berhasil diganti");
+      navigate("/login");
     }
-  }, [status, navigate]);
-
-  if (status === "error") {
-    toast.error("Terjadi kesalahan");
-    console.log(message);
-  }
+    else if (status === "error") {
+      toast.error("Terjadi kesalahan");
+      console.log(message);
+    }
+  }, [status, navigate, message]);
 
   return (
     <form
@@ -62,8 +65,10 @@ const ChangePasswordForm = () => {
       method="POST"
       encType="application/x-www-form-urlencoded"
     >
-      <input type="text" name="new_pwd" className="form-input" id="email" placeholder="Password Baru"/>
-      <input type="text" name="repeat_pwd" className="form-input" id="email" placeholder="Ulangi Password Baru"/>
+      <input type="hidden" name="token" value={token}/>
+      <input type="hidden" name="email" value={email}/>
+      <input type="password" name="password" className="form-input" id="email" placeholder="Password Baru"/>
+      <input type="password" name="password_confirmation" className="form-input" id="email" placeholder="Ulangi Password Baru"/>
       <button className="forgot-button" type="submit">Kirimkan</button>
     </form>
   );
