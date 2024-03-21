@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -7,8 +6,6 @@ const FORM_ENDPOINT = "http://127.0.0.1:8000/api/forgot-password";
 const ForgotPasswordForm = () => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
-
-  let navigate = useNavigate();
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,12 +45,11 @@ const ForgotPasswordForm = () => {
     if (status === "success") {
       toast.success("Cek email anda untuk petunjuk ganti password")
     }
-  }, [status, navigate]);
-
-  if (status === "error") {
-    toast.error("Terjadi kesalahan");
-    console.log(message);
-  }
+    else if (status === "error") {
+      toast.error("Terjadi kesalahan");
+      console.log(message);
+    }
+  }, [status, message]);
 
   return (
     <form
