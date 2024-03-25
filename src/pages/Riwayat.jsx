@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import LoadingPopUp from "../components/LoadingPopUp";
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function Riwayat(){
   const [riwayats, setRiwayats] = useState([]);
@@ -35,6 +36,11 @@ export default function Riwayat(){
     <div className="page">
       <TopNavBar />
       <div className="content">
+        <div className="search-container">
+          <input type="text" name="search" id="search-bar" placeholder="Cari riwayat" />
+          <i className="bi bi-search"></i>
+          <i className="bi bi-funnel"></i>
+        </div>
         {riwayats.map((riwayat) => (
           <div className="riwayat-box" key={riwayat.id} onClick={() => toDetailPage(riwayat.id+"/0")}>
             <h3>Nama Irigasi: {riwayat.irrigation}</h3>

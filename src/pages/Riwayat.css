@@ -3,3 +3,29 @@
   border: 6px solid #E7E7E7;
   margin: 20px;
 }
+
+.search-container {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #B0B0B0;
+  margin: 20px;
+  display: flex;
+  padding-left: 8px;
+}
+
+#search-bar {
+  outline: none;
+  border-width: 0px;
+  flex: 1;
+}
+
+#search-bar::placeholder {
+  color: #B0B0B0;
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.bi-search, .bi-funnel {
+  font-size: 1.5em;
+  padding-right: 8px;
+}
