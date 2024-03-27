@@ -2,6 +2,7 @@ import { Cookies } from "react-cookie";
 import { Navigate, Outlet } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import LoadingPopUp from "./LoadingPopUp";
 
 export default function Protected() {
   const [statusCode, setStatusCode] = useState("");
@@ -11,9 +12,7 @@ export default function Protected() {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
-        if(res.status===403){
-          setStatusCode(res.status)
-        }
+        setStatusCode(res.status);
         return null;
       });
   }, []);
@@ -28,6 +27,13 @@ export default function Protected() {
         <Navigate to="/login" />
       </>
     );
+  } else if(statusCode===200){
+    return <Outlet/>;
+  } else if(statusCode===500){
+    return <h1>500 Internal Server Error</h1>
+  } else if(statusCode===""){
+    return <LoadingPopUp/>
+  }else{
+    return <h1>Terdapat error dengan status code: {statusCode}</h1>
   }
-  return <Outlet/>;
 }
