@@ -13,6 +13,11 @@
   padding-left: 8px;
 }
 
+.search-form {
+  display: flex;
+  flex: 1;
+}
+
 #search-bar {
   outline: none;
   border-width: 0px;
@@ -28,4 +33,9 @@
 .bi-search, .bi-funnel {
   font-size: 1.5em;
   padding-right: 8px;
+}
+
+.b-search {
+  background-color: white;
+  border-width: 0px;
 }
