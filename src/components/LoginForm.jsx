@@ -4,7 +4,7 @@ import { Cookies } from "react-cookie";
 
 const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/login";
 
-const LoginForm = () => {
+const LoginForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   const cookies = new Cookies();
@@ -12,6 +12,8 @@ const LoginForm = () => {
   let navigate = useNavigate();
   
   const handleSubmit = (e) => {
+    changeIsLoading(true);
+
     e.preventDefault();
     setStatus('loading');
     setMessage('');
@@ -48,6 +50,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (status === "success") {
+      changeIsLoading(false);
       navigate("/laporkan");
     }
   }, [status, navigate]);
