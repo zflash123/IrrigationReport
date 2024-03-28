@@ -48,6 +48,7 @@ export default function Riwayat(){
   useEffect(() => {
     const cookies = new Cookies();
     if(search!=null&&filter!=null){
+      setIsLoading(true);
       fetch('http://127.0.0.1:8000/api/user-reports?' + new URLSearchParams({
         search: `${search}`,
         filter: `${filter}`
@@ -76,6 +77,7 @@ export default function Riwayat(){
           setIsLoading(false);
         });
     }else if(search===null) {
+      setIsLoading(true);
       fetch('http://127.0.0.1:8000/api/user-reports', {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}
       })
@@ -129,7 +131,7 @@ export default function Riwayat(){
               <li><a className="dropdown-item" onClick={()=>changeParams("filter", "Dalam Proses")}>Dalam Proses</a></li>
               <li><a className="dropdown-item" onClick={()=>changeParams("filter", "Ditindak Lanjuti")}>Ditindak Lanjuti</a></li>
               <li><a className="dropdown-item" onClick={()=>changeParams("filter", "Selesai")}>Selesai</a></li>
-              <li><a className="dropdown-item" href="/riwayat">Hapus Filter</a></li>
+              <li><a className="dropdown-item" onClick={()=>setSearchParams({})}>Hapus Filter</a></li>
             </ul>
           </div>
         </div>
