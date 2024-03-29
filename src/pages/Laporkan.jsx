@@ -85,15 +85,14 @@ export default function Laporkan() {
       <TopNavBar />
       <div className="leaflet-container">
         <MapContainer
-          className="full-height-map"
           center={[-7.902260521, 112.557507431]}
-          zoom={18}
           minZoom={18}
-          maxZoom={19}
-          maxBounds={[[-85.06, -180], [85.06, 180]]}
+          maxZoom={22}
           scrollWheelZoom={true}>
           <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+            maxZoom={22}
+            subdomains={['mt0','mt1','mt2','mt3']}
           />
           <LocateUser changeCoordinate={changeCoordinate}/>
           <Segments showPopUp={showPopUp} inputSegmentId={inputSegmentId} latitude={latitude} longitude={longitude} changeIsLoading={changeIsLoading}/>
@@ -158,22 +157,24 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoadi
       });
   }, [latitude, longitude]);
 
-  segments.map((segment) => {
-    const geojson = JSON.parse(segment.geojson)
-    var pointA = new L.LatLng(geojson.coordinates[0][1], geojson.coordinates[0][0]);
-		var pointB = new L.LatLng(geojson.coordinates[1][1], geojson.coordinates[1][0]);
-		var pointList = [pointA, pointB];
-    
-		var segmentLine = new L.Polyline(pointList, {
-			color: 'aqua',
-			weight: 5,
-			opacity: 0.5,
-			smoothFactor: 1
-		});
-    segmentLine.on("click", function() {
-      inputSegmentId(segment.id);
-      showPopUp();
-		});
-		segmentLine.addTo(map);
-  })
+  useEffect(()=>{
+    segments.map((segment) => {
+      const geojson = JSON.parse(segment.geojson)
+      var pointA = new L.LatLng(geojson.coordinates[0][1], geojson.coordinates[0][0]);
+      var pointB = new L.LatLng(geojson.coordinates[1][1], geojson.coordinates[1][0]);
+      var pointList = [pointA, pointB];
+      
+      var segmentLine = new L.Polyline(pointList, {
+        color: 'aqua',
+        weight: 5,
+        opacity: 0.5,
+        smoothFactor: 1
+      });
+      segmentLine.on("click", function() {
+        inputSegmentId(segment.id);
+        showPopUp();
+      });
+      segmentLine.addTo(map);
+    })
+  }, [segments])
 }
