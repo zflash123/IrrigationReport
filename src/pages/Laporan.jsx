@@ -42,7 +42,6 @@ export default function Laporan(){
 			<TopNavBar />
 			<div className="leaflet-container">
 				<MapContainer
-					className="full-height-map"
 					center={[-7.87074500384173, 112.52647830035404]}
 					zoom={18}
 					minZoom={18}
