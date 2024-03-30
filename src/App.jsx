@@ -7,6 +7,7 @@ import {
   Route,
 } from "react-router-dom";
 
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
@@ -32,6 +33,7 @@ function App() {
           <Route path="/lupa-password" element={<ForgotPassword />} />
           <Route path="/ganti-password/:token" element={<ChangePassword />} />
           <Route element={<Protected/>}>
+            <Route path="/" element={<Home/>} />
             <Route path="/laporkan" element={<Laporkan/>} />
             <Route path="/riwayat" element={<Riwayat />} />
             <Route path="/detail-laporan/:id/:segment" element={<DetailRiwayat />} />
