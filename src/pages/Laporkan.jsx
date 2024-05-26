@@ -80,6 +80,9 @@ export default function Laporkan() {
       setIsLoading(value);
     }
   }
+  useEffect(()=>{
+    toast.info("Klik garis pendek, letak irigasi yang rusak")
+  }, [])
   return (
     <div className="page">
       <TopNavBar />
