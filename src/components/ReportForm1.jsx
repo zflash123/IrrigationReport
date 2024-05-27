@@ -41,7 +41,9 @@ const ReportForm1 = ({count, segmentId1, level1, image1, changeCount, changeImag
         <button className="submit-report" type="submit">Kumpulkan Laporan</button>
       </div>
     </form>
-    <button onClick={() => {changeCount(count+1);}}>Laporkan lainnya</button>
+    <div className="div-report-other">
+      <button className="report-other" onClick={() => {changeCount(count+1);}}>Laporkan lainnya</button>
+    </div>
     </>
   );
 };

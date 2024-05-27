@@ -63,5 +63,20 @@
   height: 2.5rem;
   border-radius: 20px;
   border: 0px;
+  margin-bottom: 0.8rem;
+}
+
+.div-report-other {
+  display: flex;
+  justify-content: center;
+}
+
+.report-other {
+  background-color: #a9a9a9;
+  color: white;
+  width: 80%;
+  height: 2.5rem;
+  border-radius: 20px;
+  border: 0px;
   margin-bottom: 1.6rem;
 }
