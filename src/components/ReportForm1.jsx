@@ -23,7 +23,8 @@ const ReportForm1 = ({count, segmentId1, level1, image1, changeCount, changeImag
       method="POST"
       encType="multipart/form-data"
     >
-      <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak 1</h6>
+      <h3 className="h-info">Informasi Laporan 1</h3>
+      <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
       <input type="hidden" name="segment_id1" value={segmentId1}></input>
       <input type="file" id="myFile" name="photo" accept="image/*" onChange={(e)=>handleImage(e)} required></input>
       <input type="hidden" name="image1" value={image1}></input>

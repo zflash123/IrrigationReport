@@ -23,7 +23,8 @@ const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1,
       method="POST"
       encType="multipart/form-data"
     >
-      <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak3</h6>
+      <h3 className="h-info">Informasi Laporan 3</h3>
+      <h6 className="h-irrigation-photo">Foto Irigasi yang Rusak</h6>
       <input type="hidden" name="segment_id1" value={segmentId1}></input>
       <input type="hidden" name="image1" value={image1}></input>
       <input type="hidden" name="level1" value={level1}></input>

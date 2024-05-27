@@ -106,7 +106,6 @@ export default function Laporkan() {
             <div className="popup-bg" onClick={() => hidePopUp()}>
             </div>
             <div className="popup">
-              <h3 className="h-info">Informasi Laporan</h3>
               <ReportForms 
                 segmentId={segmentId} count={count} changeCount={changeCount}
                 segmentId1={segmentId1} image1={image1} level1={level1} note1={note1}
