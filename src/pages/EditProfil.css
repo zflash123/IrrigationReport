@@ -7,3 +7,30 @@
   flex-direction: column;
   align-items: center;
 }
+
+.e-header {
+  padding-top: 7%;
+  padding-bottom: 5%;
+}
+
+.e-p-form{
+  padding-top: 15%;
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.e-div-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 15%;
+}
+
+.e-button {
+  background-color: #64A2FF;
+  color: white;
+  width: 40%;
+  height: 2.5rem;
+  border-radius: 20px;
+  border: 0px;
+  margin-bottom: 0.8rem;
+}
