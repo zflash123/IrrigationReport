@@ -9,7 +9,7 @@ export default function EditProfil(){
       <TopNavBar />
       <div className="e-content">
         <div className="e-i-content">
-          <h1>Ubah Data Diri</h1>
+          <h1 className="e-header">Ubah Data Diri</h1>
           <EditProfilForm />
         </div>
       </div>
