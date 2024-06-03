@@ -9,7 +9,6 @@ const EditProfilForm = () => {
   const [message, setMessage] = useState('');
   // Input State for default values
   const [fullname, setFullName] = useState("");
-  const [shortname, setShortname] = useState("");
   const [phone, setPhone] = useState("");
 
   useEffect(() => {
@@ -22,7 +21,6 @@ const EditProfilForm = () => {
       })
       .then((data) => {
         setFullName(data.fullname);
-        setShortname(data.shortname);
         setPhone(data.phone);
       });
   }, []);
@@ -81,15 +79,17 @@ const EditProfilForm = () => {
 
   return (
     <form
+      className="e-p-form"
       action={FORM_ENDPOINT}
       onSubmit={handleSubmit}
       method="PUT"
       encType="multipart/form-data"
     >
       <input type="text" name="fullname" className="r-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
-      <input type="text" name="shortname" className="r-form-input" id="register-shortname" value={shortname} onChange={e => setShortname(e.target.value)}/>
       <input type="text" name="phone" className="r-form-input" id="register-phone" value={phone} onChange={e => setPhone(e.target.value)}/>
-      <button>Simpan Data</button>
+      <div className="e-div-btn">
+        <button className="e-button">Simpan Data</button>
+      </div>
     </form>
   );
 };
