@@ -66,10 +66,6 @@ export default function Profil(){
           <button className="pencil-button" onClick={redirect}>
             <img src="/img/pencil-icon.png" width="35rem" alt="" />
           </button>
-        </div> 
-        <div className="profile-data">
-          <h5>Nama Pendek:</h5>
-          <h5>{profil.shortname}</h5>
         </div>
         <div className="profile-data">
           <h5>Nama Lengkap:</h5>
