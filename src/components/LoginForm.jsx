@@ -46,6 +46,7 @@ const LoginForm = ({changeIsLoading}) => {
       .catch((err) => {
         console.log("err = "+err);
         setMessage(err.toString());
+        toast.error("Terdapat email atau password yang salah");
         setStatus('error');
       });
   };
