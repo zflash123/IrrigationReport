@@ -7,7 +7,6 @@ const FORM_ENDPOINT = "http://127.0.0.1:8000/api/auth/login";
 
 const LoginForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');
-  const [message, setMessage] = useState('');
   const cookies = new Cookies();
 
   let navigate = useNavigate();
@@ -17,7 +16,6 @@ const LoginForm = ({changeIsLoading}) => {
 
     e.preventDefault();
     setStatus('loading');
-    setMessage('');
 
     const finalFormEndpoint = e.target.action;
     const data = Array.from(e.target.elements)
@@ -45,7 +43,6 @@ const LoginForm = ({changeIsLoading}) => {
       })
       .catch((err) => {
         console.log("err = "+err);
-        setMessage(err.toString());
         toast.error("Terdapat email atau password yang salah");
         setStatus('error');
       });
