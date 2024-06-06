@@ -43,14 +43,14 @@ export default function Laporan(){
 			<div className="leaflet-container">
 				<MapContainer
 					center={[-7.87074500384173, 112.52647830035404]}
-					zoom={18}
 					minZoom={18}
-					maxZoom={19}
-					maxBounds={[[-85.06, -180], [85.06, 180]]}
+					maxZoom={22}
 					scrollWheelZoom={true}>
 					<TileLayer
-						url="http://mt0.google.com/vt/lyrs=m&hl=en&x={x}&y={y}&z={z}&s=Ga"
-					/>
+            url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+            maxZoom={22}
+            subdomains={['mt0','mt1','mt2','mt3']}
+          />
 					<LocateUser changeCoordinate={changeCoordinate}/>
 					<Segments segments={segments} latitude={latitude} longitude={longitude} showPopUp={showPopUp} changeSegments={changeSegments} changeSegment={changeSegment} changeIsLoading={changeIsLoading}/>
 				</MapContainer>
