@@ -69,7 +69,6 @@ const RegisterForm = () => {
       <input type="text" name="email" className="r-form-input" id="register-email" placeholder="Email" />
       <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" />
       <input type="text" name="fullname" className="r-form-input" id="register-fullname" placeholder="Nama Lengkap" />
-      <input type="text" name="phone" className="r-form-input" id="register-phone" placeholder="Nomor Telepon" />
       <input type="hidden" name="urole_id" value={"1d3c9d35-3d02-4b42-ad44-b75ca8c4e4fa"}/>
       <button className="register-button">Register</button>
     </form>
