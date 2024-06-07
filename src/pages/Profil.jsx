@@ -79,10 +79,6 @@ export default function Profil(){
           <h5>Username:</h5>
           <h5>{profil.username}</h5>
         </div>
-        <div className="profile-data">
-          <h5>No. Telepon:</h5>
-          <h5>{profil.phone}</h5>
-        </div>
       </div>
       { isLoading ?
         <>
