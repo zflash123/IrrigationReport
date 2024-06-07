@@ -9,7 +9,7 @@ const EditProfilForm = () => {
   const [message, setMessage] = useState('');
   // Input State for default values
   const [fullname, setFullName] = useState("");
-
+  
   useEffect(() => {
     const cookies = new Cookies();
     fetch(`http://127.0.0.1:8000/api/profile`, {
@@ -83,7 +83,7 @@ const EditProfilForm = () => {
       method="PUT"
       encType="multipart/form-data"
     >
-      <input type="text" name="fullname" className="r-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
+      <input type="text" name="fullname" className="e-p-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
       <div className="e-div-btn">
         <button className="e-button">Simpan Data</button>
       </div>
