@@ -71,7 +71,7 @@ const LoginForm = ({changeIsLoading}) => {
         <a href="/lupa-password">Lupa password?</a><br />
       </div>
       <button className="login-button" type="submit">Login</button><br />
-      <a href="/register" id="register-link">Belum punya akun? klik untuk daftar</a>
+      <a href="/register" id="register-link">Belum punya akun? Klik untuk daftar</a>
     </form>
   );
 };
