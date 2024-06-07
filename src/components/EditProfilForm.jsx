@@ -9,7 +9,6 @@ const EditProfilForm = () => {
   const [message, setMessage] = useState('');
   // Input State for default values
   const [fullname, setFullName] = useState("");
-  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -21,7 +20,6 @@ const EditProfilForm = () => {
       })
       .then((data) => {
         setFullName(data.fullname);
-        setPhone(data.phone);
       });
   }, []);
 
@@ -86,7 +84,6 @@ const EditProfilForm = () => {
       encType="multipart/form-data"
     >
       <input type="text" name="fullname" className="r-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
-      <input type="text" name="phone" className="r-form-input" id="register-phone" value={phone} onChange={e => setPhone(e.target.value)}/>
       <div className="e-div-btn">
         <button className="e-button">Simpan Data</button>
       </div>
