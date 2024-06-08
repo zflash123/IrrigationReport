@@ -50,3 +50,10 @@
   padding-right: 3%;
   border: 2.5px solid #949494;
 }
+
+.profile-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15%;
+}
