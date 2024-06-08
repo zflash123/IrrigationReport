@@ -9,7 +9,8 @@ const EditProfilForm = () => {
   const [message, setMessage] = useState('');
   // Input State for default values
   const [fullname, setFullName] = useState("");
-  
+  const [img, setImg] = useState(null);
+
   useEffect(() => {
     const cookies = new Cookies();
     fetch(`http://127.0.0.1:8000/api/profile`, {
@@ -24,6 +25,14 @@ const EditProfilForm = () => {
   }, []);
 
   let navigate = useNavigate();
+
+  const handleImgChange = (e) => {
+    var reader = new FileReader();
+    reader.onload = function(image) {
+      setImg(image.target.result);
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  }
   
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -83,6 +92,11 @@ const EditProfilForm = () => {
       method="PUT"
       encType="multipart/form-data"
     >
+      <div className="profile-container">
+        <h4>Foto Profil:</h4>
+        <input type="file" name="photo-profile" accept="image/*" onChange={handleImgChange}></input>
+        <input type="hidden" name="image" value={img}></input>
+      </div>
       <input type="text" name="fullname" className="e-p-form-input" id="register-fullname" value={fullname} onChange={e => setFullName(e.target.value)}/>
       <div className="e-div-btn">
         <button className="e-button">Simpan Data</button>
