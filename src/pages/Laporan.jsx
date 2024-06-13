@@ -67,7 +67,7 @@ function Segments({segments, showPopUp, latitude, longitude, changeIsLoading, ch
 	useEffect(() => {
     changeIsLoading(true);
     const cookies = new Cookies();
-    fetch('http://127.0.0.1:8000/api/segments-by-user-id?' + new URLSearchParams({
+    fetch('http://laporirigasi.my.id/api/segments-by-user-id?' + new URLSearchParams({
       lat: `${latitude}`,
       long: `${longitude}`,
     }), {

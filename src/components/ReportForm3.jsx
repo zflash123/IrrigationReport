@@ -1,7 +1,7 @@
 import useForm from "./UseForm";
 import { useState } from "react";
 
-const FORM_ENDPOINT = "http://127.0.0.1:8000/api/report";
+const FORM_ENDPOINT = "http://laporirigasi.my.id/api/report";
 
 const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1, segmentId2, image2, level2, note2, image3, changeImage3}) => {
   const { handleSubmit } = useForm({

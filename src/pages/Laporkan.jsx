@@ -140,7 +140,7 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoadi
   useEffect(() => {
     changeIsLoading(true);
     const cookies = new Cookies();
-    fetch('http://127.0.0.1:8000/api/close-segments?' + new URLSearchParams({
+    fetch('http://laporirigasi.my.id/api/close-segments?' + new URLSearchParams({
       lat: `${latitude}`,
       long: `${longitude}`,
     }), {

@@ -15,7 +15,7 @@ export default function DetailRiwayat() {
   segment = parseInt(segment);
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`http://127.0.0.1:8000/api/report/${id}`, {
+    fetch(`http://laporirigasi.my.id/api/report/${id}`, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
