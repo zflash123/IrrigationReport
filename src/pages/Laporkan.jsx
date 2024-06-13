@@ -89,9 +89,9 @@ export default function Laporkan() {
       <div className="leaflet-container">
         <MapContainer
           center={[-7.902260521, 112.557507431]}
-          zoom={19}
           minZoom={15}
           maxZoom={22}
+          zoom={19}
           scrollWheelZoom={true}>
           <TileLayer
             url="http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
