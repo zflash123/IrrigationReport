@@ -89,7 +89,8 @@ export default function Laporkan() {
       <div className="leaflet-container">
         <MapContainer
           center={[-7.902260521, 112.557507431]}
-          minZoom={18}
+          zoom={19}
+          minZoom={15}
           maxZoom={22}
           scrollWheelZoom={true}>
           <TileLayer
@@ -178,5 +179,6 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoadi
       });
       segmentLine.addTo(map);
     })
+    map.setZoom(19);
   }, [segments])
 }
