@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/auth/register";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/auth/register";
 
 const RegisterForm = () => {
   const [status, setStatus] = useState('');

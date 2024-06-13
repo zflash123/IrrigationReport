@@ -13,7 +13,7 @@ export default function Profil(){
 
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`http://laporirigasi.my.id/api/profile`, {
+    fetch(`https://laporirigasi.my.id/api/profile`, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
@@ -28,7 +28,7 @@ export default function Profil(){
   function logout() {
     setIsLoading(true);
     const cookies = new Cookies();
-    fetch('http://laporirigasi.my.id/api/auth/logout', {
+    fetch('https://laporirigasi.my.id/api/auth/logout', {
       method: 'POST',
       headers: {
         Authorization: 'Bearer '+cookies.get('user_session')

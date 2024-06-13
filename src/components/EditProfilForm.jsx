@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/profile";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/profile";
 
 const EditProfilForm = () => {
   const [status, setStatus] = useState('');
@@ -13,7 +13,7 @@ const EditProfilForm = () => {
 
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`http://laporirigasi.my.id/api/profile`, {
+    fetch(`https://laporirigasi.my.id/api/profile`, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {

@@ -8,7 +8,7 @@ export default function Protected() {
   const [statusCode, setStatusCode] = useState("");
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`http://laporirigasi.my.id/api/check-valid-cookie`, {
+    fetch(`https://laporirigasi.my.id/api/check-valid-cookie`, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {

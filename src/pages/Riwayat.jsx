@@ -49,7 +49,7 @@ export default function Riwayat(){
     const cookies = new Cookies();
     if(search!=null&&filter!=null){
       setIsLoading(true);
-      fetch('http://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
         search: `${search}`,
         filter: `${filter}`
       }), {
@@ -64,7 +64,7 @@ export default function Riwayat(){
         });
     } else if(filter!=null){
       setIsLoading(true);
-      fetch('http://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
         filter: `${filter}`
       }), {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}
@@ -78,7 +78,7 @@ export default function Riwayat(){
         });
     }else if(search===null) {
       setIsLoading(true);
-      fetch('http://laporirigasi.my.id/api/user-reports', {
+      fetch('https://laporirigasi.my.id/api/user-reports', {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}
       })
         .then((res) => {
@@ -89,7 +89,7 @@ export default function Riwayat(){
           setIsLoading(false);
         });
     }else if(search!=null) {
-      fetch('http://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
         search: `${search}`
       }), {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}

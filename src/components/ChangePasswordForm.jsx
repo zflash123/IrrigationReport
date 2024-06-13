@@ -2,7 +2,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/reset-password";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/reset-password";
 
 const ChangePasswordForm = () => {
   const { token } = useParams();

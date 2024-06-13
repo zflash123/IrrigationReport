@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/auth/login";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/auth/login";
 
 const LoginForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');

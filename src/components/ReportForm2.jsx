@@ -1,6 +1,6 @@
 import useForm from "./UseForm";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/report";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/report";
 
 const ReportForm2 = ({segmentId, count, changeCount, segmentId1, level1, note1, image1, level2, image2, changeImage2, changeLevel2, changeNote2}) => {
   const { handleSubmit } = useForm({

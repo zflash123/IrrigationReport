@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "http://laporirigasi.my.id/api/forgot-password";
+const FORM_ENDPOINT = "https://laporirigasi.my.id/api/forgot-password";
 
 const ForgotPasswordForm = () => {
   const [status, setStatus] = useState('');
