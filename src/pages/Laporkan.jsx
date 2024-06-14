@@ -18,6 +18,7 @@ export default function Laporkan() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [count, setCount] = useState(1);
+  const [countCoor, setCountCoor] = useState(0);
   const [segmentId1, setSegmentId1] = useState("");
   const [image1, setImage1] = useState("");
   const [level1, setLevel1] = useState("");
@@ -29,8 +30,11 @@ export default function Laporkan() {
   const [image3, setImage3] = useState("");
 
   function changeCoordinate(latitude, longitude) {
-    setLatitude(latitude);
-    setLongitude(longitude);
+    if(countCoor===0){
+      setLatitude(latitude);
+      setLongitude(longitude);
+      setCountCoor(countCoor+1);
+    }
   }
   function inputSegmentId(id) {
     setSegmentId(id);
