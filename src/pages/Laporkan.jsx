@@ -9,7 +9,7 @@ import { Cookies } from 'react-cookie';
 import "./Laporkan.css";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LoadingPopUp from '../components/LoadingPopUp';
+// import LoadingPopUp from '../components/LoadingPopUp';
 
 export default function Laporkan() {
   const [isPopUpActive, setPopUpActive] = useState(false);
@@ -123,7 +123,7 @@ export default function Laporkan() {
       }
       { isLoading ?
         <>
-          <LoadingPopUp/>
+          {/*<LoadingPopUp/>*/}
         </>
         :<></>
       }
