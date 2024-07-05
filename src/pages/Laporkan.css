@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.segment-line {
+  filter: drop-shadow(1px 1px 0 #00ff0d) drop-shadow(-1px -1px 0 #00ff0d) drop-shadow(1px -1px 0 #00ff0d) drop-shadow(-1px 1px 0 #00ff0d);
+}
+
 .popup-bg {
   position: fixed;
   width: 100%;
