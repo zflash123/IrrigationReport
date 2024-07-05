@@ -34,7 +34,7 @@ const ReportForm3 = ({segmentId, changeCount, segmentId1, image1, level1, note1,
       <input type="hidden" name="level2" value={level2}></input>
       <input type="hidden" name="note2" value={note2}></input>
       <input type="hidden" name="segment_id3" value={segmentId}></input>
-      <input type="file" id="myFile" name="photo" accept="image/*" onChange={(e)=>handleImage(e)} required></input>
+      <input type="file" className="r-img" accept="image/*" onChange={(e)=>handleImage(e)} required></input>
       <input type="hidden" name="image3" value={image3}></input>
       <h6 className="h-irrigation-dmg">Tingkat Kerusakan Irigasi</h6>
       <input type="radio" name="level3" value="Ringan" onChange={e => setLevel3(e.target.value)} required></input>
