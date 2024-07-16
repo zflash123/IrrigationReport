@@ -94,9 +94,10 @@ function Segments({segments, showPopUp, latitude, longitude, changeIsLoading, ch
 	
 		var segmentLine = new L.Polyline(pointList, {
 			color: 'blue',
-			weight: 5,
+			weight: 6,
 			opacity: 1,
-			smoothFactor: 1
+			smoothFactor: 1,
+			className: 'segment-line'
 		});
 		segmentLine.on("click", function() {
 			changeSegment(segment);
