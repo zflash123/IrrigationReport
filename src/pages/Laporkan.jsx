@@ -91,7 +91,7 @@ export default function Laporkan() {
       <div className="leaflet-container">
         <MapContainer
           center={[-7.902260521, 112.557507431]}
-          minZoom={15}
+          minZoom={19}
           maxZoom={22}
           zoom={19}
           scrollWheelZoom={true}>

@@ -43,7 +43,7 @@ export default function Laporan(){
 			<div className="leaflet-container">
 				<MapContainer
 					center={[-7.87074500384173, 112.52647830035404]}
-					minZoom={18}
+					minZoom={19}
 					maxZoom={22}
 					scrollWheelZoom={true}>
 					<TileLayer
