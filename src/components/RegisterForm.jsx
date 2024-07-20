@@ -65,10 +65,10 @@ const RegisterForm = () => {
       method="POST"
       encType="multipart/form-data"
     >
-      <input type="text" name="username" className="r-form-input" id="register-username" placeholder="Username" />
-      <input type="text" name="email" className="r-form-input" id="register-email" placeholder="Email" />
-      <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" />
-      <input type="text" name="fullname" className="r-form-input" id="register-fullname" placeholder="Nama Lengkap" />
+      <input type="text" name="username" className="r-form-input" id="register-username" placeholder="Username" required />
+      <input type="text" name="email" className="r-form-input" id="register-email" placeholder="Email" required />
+      <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" required />
+      <input type="text" name="fullname" className="r-form-input" id="register-fullname" placeholder="Nama Lengkap" required />
       <input type="hidden" name="urole_id" value={"1d3c9d35-3d02-4b42-ad44-b75ca8c4e4fa"}/>
       <button className="register-button">Register</button>
     </form>
