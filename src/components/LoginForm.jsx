@@ -65,8 +65,8 @@ const LoginForm = ({changeIsLoading}) => {
       method="POST"
       encType="multipart/form-data"
     >
-      <input type="text" name="email" className="form-input" id="email" placeholder="email"/>
-      <input type="password" name="password" className="form-input" id="password" placeholder="password"/>
+      <input type="text" name="email" className="form-input" id="email" placeholder="email" required/>
+      <input type="password" name="password" className="form-input" id="password" placeholder="password" required/>
       <div id="forgot-pwd">
         <a href="/lupa-password">Lupa password?</a><br />
       </div>
