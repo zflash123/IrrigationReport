@@ -80,6 +80,10 @@ export default function DetailRiwayat() {
           <h4>Foto: </h4>
           <img src={riwayat[segment].image} width="60%" alt="Foto Irigasi yang Rusak" />
         </div>
+        <div className="report-data">
+          <h4>Tanggal dan Waktu Lapor: </h4>
+          <h4>{riwayat[segment].created_at}</h4>
+          </div>
         </>:<></>}
       </div>
       { isLoading ?
