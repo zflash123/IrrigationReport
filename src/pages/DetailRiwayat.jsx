@@ -83,7 +83,11 @@ export default function DetailRiwayat() {
         <div className="report-data">
           <h4>Tanggal dan Waktu Lapor: </h4>
           <h4>{riwayat[segment].created_at}</h4>
-          </div>
+        </div>
+        <div className="report-data">
+          <h4>Titik Tengah Lokasi: </h4>
+          <a className="center-point-link" href={`https://www.google.com/maps/place/${JSON.parse(riwayat[segment].center_point_json)[1]},${JSON.parse(riwayat[segment].center_point_json)[0]}?entry=ttu`}>Lihat di Google Maps</a>
+        </div>
         </>:<></>}
       </div>
       { isLoading ?
