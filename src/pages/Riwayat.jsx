@@ -140,6 +140,8 @@ export default function Riwayat(){
             <h3>Nama Irigasi: {riwayat.irrigation}</h3>
             <h3>Saluran: {riwayat.canal}</h3>
             <h3>Status: {riwayat.status}</h3>
+            <h3>Tanggal Lapor: {riwayat.created_at.split(" ")[0]}</h3>
+            {riwayat.done_at===""?<h3>Tanggal Selesai: {riwayat.done_at}</h3>:<></>}
           </div>
         ))}
       </div>
