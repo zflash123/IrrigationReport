@@ -1,5 +1,6 @@
 .h-info {
   text-align: center;
+  font-size: 24px;
 }
 
 .segment-line {
@@ -17,7 +18,7 @@
 .popup {
   position: fixed;
   z-index: 2000;
-  top: 47%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   height: 500px;
@@ -85,7 +86,7 @@
   margin-bottom: 25.6px;
 }
 
-@media only screen and (min-width: 640px) {
+@media only screen and (min-width: 640px) and (min-height: 750px) {
   .popup {
     height: 700px;
     width: 480px;
@@ -115,7 +116,7 @@
   #dmg-radio {
     padding-right: 15px;
     padding-left: 4px;
-    font-size: 21px;
+    font-size: 22px;
   }
   
   .h-ad-info {
