@@ -93,7 +93,7 @@ const EditProfilForm = () => {
       encType="multipart/form-data"
     >
       <div className="profile-container">
-        <h4>Foto Profil:</h4>
+        <h4 className="h-profile-photo">Foto Profil:</h4>
         <input type="file" name="photo-profile" accept="image/*" onChange={handleImgChange}></input>
         <input type="hidden" name="image" value={img}></input>
       </div>
