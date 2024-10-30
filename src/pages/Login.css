@@ -62,3 +62,26 @@
     font-size: 21px;
   }
 }
+@media only screen and (min-width: 1024px) {
+  .login-content {
+    width: 23%;
+  }
+  .login-header{
+    margin-bottom: 70px;
+    font-size: 35px;
+  }
+  .login-button {
+    height: 2rem;
+    font-size: 17px;
+  }
+  .form-input {
+    height: 2.8rem;
+    font-size: 15px;
+  }
+  #forgot-pwd {
+    font-size: 15px;
+  }
+  #register-link {
+    font-size: 15px;
+  }
+}
