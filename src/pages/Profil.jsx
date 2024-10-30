@@ -10,10 +10,11 @@ export default function Profil(){
   const [profil, setProfil] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   let navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`https://laporirigasi.my.id/api/profile`, {
+    fetch(`${apiUrl}/api/profile`, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
@@ -28,7 +29,7 @@ export default function Profil(){
   function logout() {
     setIsLoading(true);
     const cookies = new Cookies();
-    fetch('https://laporirigasi.my.id/api/auth/logout', {
+    fetch(`${apiUrl}/api/auth/logout`, {
       method: 'POST',
       headers: {
         Authorization: 'Bearer '+cookies.get('user_session')

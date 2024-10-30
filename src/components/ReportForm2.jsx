@@ -1,6 +1,7 @@
 import useForm from "./UseForm";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/report";
+const API_URL = import.meta.env.VITE_API_URL;
+const FORM_ENDPOINT = `${API_URL}/api/report`;
 
 const ReportForm2 = ({segmentId, count, changeCount, segmentId1, level1, note1, image1, level2, image2, changeImage2, changeLevel2, changeNote2}) => {
   const { handleSubmit } = useForm({

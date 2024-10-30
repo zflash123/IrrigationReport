@@ -47,9 +47,10 @@ export default function Riwayat(){
   }
   useEffect(() => {
     const cookies = new Cookies();
+    const apiUrl = import.meta.env.VITE_API_URL;
     if(search!=null&&filter!=null){
       setIsLoading(true);
-      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch(`${apiUrl}/api/user-reports?` + new URLSearchParams({
         search: `${search}`,
         filter: `${filter}`
       }), {
@@ -64,7 +65,7 @@ export default function Riwayat(){
         });
     } else if(filter!=null){
       setIsLoading(true);
-      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch(`${apiUrl}/api/user-reports?` + new URLSearchParams({
         filter: `${filter}`
       }), {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}
@@ -78,7 +79,7 @@ export default function Riwayat(){
         });
     }else if(search===null) {
       setIsLoading(true);
-      fetch('https://laporirigasi.my.id/api/user-reports', {
+      fetch(`${apiUrl}/api/user-reports`, {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}
       })
         .then((res) => {
@@ -89,7 +90,7 @@ export default function Riwayat(){
           setIsLoading(false);
         });
     }else if(search!=null) {
-      fetch('https://laporirigasi.my.id/api/user-reports?' + new URLSearchParams({
+      fetch(`${apiUrl}/api/user-reports?` + new URLSearchParams({
         search: `${search}`
       }), {
         headers: {Authorization: 'Bearer '+cookies.get('user_session')}

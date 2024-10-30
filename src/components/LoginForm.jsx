@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/auth/login";
+const API_URL = import.meta.env.VITE_API_URL;
+const FORM_ENDPOINT = `${API_URL}/api/auth/login`;
 
 const LoginForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');

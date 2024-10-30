@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Cookies } from "react-cookie";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/profile";
+const apiUrl = import.meta.env.VITE_API_URL;
+const FORM_ENDPOINT = `${apiUrl}/api/profile`;
 
 const EditProfilForm = () => {
   const [status, setStatus] = useState('');

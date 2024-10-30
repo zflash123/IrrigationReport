@@ -67,7 +67,8 @@ function Segments({segments, showPopUp, latitude, longitude, changeIsLoading, ch
 	useEffect(() => {
     changeIsLoading(true);
     const cookies = new Cookies();
-    fetch('https://laporirigasi.my.id/api/segments-by-user-id?' + new URLSearchParams({
+		const apiUrl = import.meta.env.VITE_API_URL;
+    fetch(`${apiUrl}/api/segments-by-user-id?` + new URLSearchParams({
       lat: `${latitude}`,
       long: `${longitude}`,
     }), {
