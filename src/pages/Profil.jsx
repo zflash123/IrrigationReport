@@ -57,28 +57,30 @@ export default function Profil(){
     <div className="page">
       <TopNavBar />
       <div className="content">
-        <div className="photo-profile">
-          <img className="pp-img" src={profil.avatar} alt="Photo Profile" />
-        </div>
-        <div className="logout">
-          <button className="logout-button" onClick={logout}><b>Logout</b></button>
-        </div>
-        <div className="edit-data">
-          <button className="pencil-button" onClick={redirect}>
-            <img src="/img/pencil-icon.png" width="35rem" alt="" />
-          </button>
-        </div>
-        <div className="profile-data">
-          <h5>Nama Lengkap:</h5>
-          <h5>{profil.fullname}</h5>
-        </div>
-        <div className="profile-data">
-          <h5>Email:</h5>
-          <h5>{profil.email}</h5>
-        </div>
-        <div className="profile-data">
-          <h5>Username:</h5>
-          <h5>{profil.username}</h5>
+        <div className="profile-content">
+          <div className="photo-profile">
+            <img className="pp-img" src={profil.avatar} alt="Photo Profile" />
+          </div>
+          <div className="logout">
+            <button className="logout-button" onClick={logout}><b>Logout</b></button>
+          </div>
+          <div className="edit-data">
+            <button className="pencil-button" onClick={redirect}>
+              <img src="/img/pencil-icon.png" width="35rem" alt="" />
+            </button>
+          </div>
+          <div className="profile-data">
+            <h5>Nama Lengkap:</h5>
+            <h5>{profil.fullname}</h5>
+          </div>
+          <div className="profile-data">
+            <h5>Email:</h5>
+            <h5>{profil.email}</h5>
+          </div>
+          <div className="profile-data">
+            <h5>Username:</h5>
+            <h5>{profil.username}</h5>
+          </div>
         </div>
       </div>
       { isLoading ?
