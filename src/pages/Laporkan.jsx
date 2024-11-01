@@ -39,6 +39,7 @@ export default function Laporkan() {
   }
   function showPopUp() {
     setPopUpActive(true);
+    // setIsLoading(false);
   }
   function changeCount(num) {
     setCount(num)
@@ -82,9 +83,6 @@ export default function Laporkan() {
       setIsLoading(value);
     }
   }
-  useEffect(()=>{
-    toast.info("Klik garis pendek, letak irigasi yang rusak")
-  }, [])
   return (
     <div className="page">
       <TopNavBar />
@@ -135,10 +133,14 @@ export default function Laporkan() {
 function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoading}) {
   const map = useMap();
   const [segments, setSegments] = useState([]);
+  const [isFetched, setIsFetched] = useState(false);
   
   function changeSegments(data) {
     setSegments(data);
     changeIsLoading(false);
+    if(latitude!=""){
+      setIsFetched(true)
+    }
   }
   useEffect(() => {
     changeIsLoading(true);
@@ -162,6 +164,16 @@ function Segments({showPopUp, inputSegmentId, latitude, longitude, changeIsLoadi
         console.log(err.toString());
       });
   }, [latitude, longitude]);
+  
+  useEffect(()=>{
+    if(isFetched == true){
+      if(segments[0] == undefined){
+        toast.info("Tidak ada jaringan irigasi di tempat Anda")
+      } else{
+        toast.info("Klik garis pendek, letak irigasi yang rusak")
+      }
+    }
+  }, [isFetched])
 
   useEffect(()=>{
     segments.map((segment) => {
