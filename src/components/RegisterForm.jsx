@@ -1,15 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Cookies } from "react-cookie";
+import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/auth/register";
+const apiUrl = import.meta.env.VITE_API_URL
+const FORM_ENDPOINT = `${apiUrl}/api/auth/register`;
 
-const RegisterForm = () => {
+const RegisterForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
+  const cookies = new Cookies();
 
   let navigate = useNavigate();
   
   const handleSubmit = (e) => {
+    changeIsLoading(true)
     e.preventDefault();
     setStatus('loading');
     setMessage('');
@@ -32,10 +37,12 @@ const RegisterForm = () => {
           throw new Error(response.statusText);
         }
 
-        return null;
+        return response.json();
       })
-      .then(() => {
+      .then((data) => {
+        cookies.set('user_session', data.jwtToken, { path: '/' })
         setStatus('success');
+        changeIsLoading(false)
       })
       .catch((err) => {
         setMessage(err.toString());
@@ -45,6 +52,7 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (status === "success") {
+      toast.success("Cek email Anda untuk verifikasi email")
       navigate("/login");
     }
   }, [status, navigate]);
