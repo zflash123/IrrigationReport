@@ -17,7 +17,5 @@ export default function LocateUser({changeCoordinate}) {
   map.on('locationerror', function() {
     toast.error("Mohon izinkan akses ke lokasi", {autoClose: 10000})
   })
-  useEffect(() => {
-  }, [])
   return;
 }
