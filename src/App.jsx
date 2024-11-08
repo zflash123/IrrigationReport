@@ -18,6 +18,7 @@ import Laporan from './pages/Laporan';
 import Profil from './pages/Profil';
 import DetailRiwayat from './pages/DetailRiwayat';
 import EditProfil from './pages/EditProfil';
+import VerifyEmail from './pages/VerifyEmail';
 import { CookiesProvider } from 'react-cookie'
 import Protected from './components/Protected';
 import { ToastContainer } from 'react-toastify';
@@ -40,6 +41,7 @@ function App() {
             <Route path="/laporan" element={<Laporan />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/edit-profil" element={<EditProfil />} />
+            <Route path="/email/verify/:id/:hash" element={<VerifyEmail />} />
           </Route>
         </Routes>
       </Router>
