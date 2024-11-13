@@ -44,6 +44,10 @@
   padding-left: 4px;
 }
 
+#dmg-radio3 {
+  padding-left: 4px;
+}
+
 .h-ad-info {
   margin-top: 8px;
   margin-bottom: 11px;
@@ -116,6 +120,10 @@
   #dmg-radio {
     padding-right: 15px;
     padding-left: 4px;
+    font-size: 22px;
+  }
+
+  #dmg-radio3 {
     font-size: 22px;
   }
   
