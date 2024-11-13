@@ -36,7 +36,7 @@ const ReportForm2 = ({segmentId, count, changeCount, segmentId1, level1, note1, 
       <input type="radio" name="level2" value="Sedang" onChange={e => changeLevel2(e.target.value)} required></input>
       <label htmlFor="css" id="dmg-radio">sedang</label>
       <input type="radio" name="level2" value="Berat" onChange={e => changeLevel2(e.target.value)} required></input>
-      <label htmlFor="parah" id="dmg-radio">berat</label>
+      <label htmlFor="parah" id="dmg-radio3">berat</label>
       <input type="hidden" name="level2" value={level2}></input>
       <h6 className="h-ad-info">Keterangan Tambahan</h6>
       <textarea className="ad-info" name="note2" rows="5" onChange={e => changeNote2(e.target.value)}></textarea>
