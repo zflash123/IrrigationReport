@@ -57,6 +57,7 @@
   border: 6px solid #E7E7E7;
   border-radius: 15px;
   width: 234px;
+  resize: none;
 }
 
 .div-submit-report {
@@ -137,7 +138,6 @@
     border: 6px solid #E7E7E7;
     border-radius: 15px;
     width: 334px;
-    resize: none;
   }
   
   .div-submit-report {
