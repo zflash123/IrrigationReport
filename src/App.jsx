@@ -33,6 +33,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/lupa-password" element={<ForgotPassword />} />
           <Route path="/ganti-password/:token" element={<ChangePassword />} />
+          <Route path="/email/verify/:id/:hash" element={<VerifyEmail />} />
           <Route element={<Protected/>}>
             <Route path="/" element={<Home/>} />
             <Route path="/laporkan" element={<Laporkan/>} />
@@ -41,7 +42,6 @@ function App() {
             <Route path="/laporan" element={<Laporan />} />
             <Route path="/profil" element={<Profil />} />
             <Route path="/edit-profil" element={<EditProfil />} />
-            <Route path="/email/verify/:id/:hash" element={<VerifyEmail />} />
           </Route>
         </Routes>
       </Router>
