@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/forgot-password";
+const API_URL = import.meta.env.VITE_API_URL;
+const FORM_ENDPOINT = `${API_URL}/api/forgot-password`;
 
 const ForgotPasswordForm = () => {
   const [status, setStatus] = useState('');
