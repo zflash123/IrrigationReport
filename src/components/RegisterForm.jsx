@@ -7,8 +7,9 @@ const apiUrl = import.meta.env.VITE_API_URL
 const FORM_ENDPOINT = `${apiUrl}/api/auth/register`;
 
 const RegisterForm = ({changeIsLoading}) => {
-  const [status, setStatus] = useState('');
+  const [statusCode, setStatusCode] = useState('');
   const [message, setMessage] = useState('');
+  const [message2, setMessage2] = useState('');
   const cookies = new Cookies();
 
   let navigate = useNavigate();
@@ -16,7 +17,6 @@ const RegisterForm = ({changeIsLoading}) => {
   const handleSubmit = (e) => {
     changeIsLoading(true)
     e.preventDefault();
-    setStatus('loading');
     setMessage('');
 
     const finalFormEndpoint = e.target.action;
@@ -33,38 +33,44 @@ const RegisterForm = ({changeIsLoading}) => {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        if (response.status !== 200) {
-          throw new Error(response.statusText);
-        }
-
+        setStatusCode(response.status);
         return response.json();
       })
       .then((data) => {
         cookies.set('user_session', data.jwtToken, { path: '/' })
-        setStatus('success');
+        if(data.error != undefined){
+          if(data.error.username != undefined){
+            setMessage('Username yang Anda masukkan sudah dipakai');
+          }
+          if(data.error.email != undefined){
+            setMessage2('Email yang Anda masukkan sudah dipakai');
+          }
+        }
         changeIsLoading(false)
       })
       .catch((err) => {
         setMessage(err.toString());
-        setStatus('error');
+        setStatusCode(500);
+        changeIsLoading(false)
+        toast.error(message);
       });
   };
 
   useEffect(() => {
-    if (status === "success") {
+    if (statusCode === 200) {
       toast.success("Cek email Anda untuk verifikasi email")
       navigate("/login");
+    } else if (statusCode === 400) {
+      if(message != ''){
+        toast.error(message);
+        setMessage('');
+      }
+      if(message2 != ''){
+        toast.error(message2);
+        setMessage2('');
+      }
     }
-  }, [status, navigate]);
-
-  if (status === "error") {
-    return (
-      <>
-        <div>Something bad happened!</div>
-        <div>{message}</div>
-      </>
-    );
-  }
+  }, [statusCode, navigate, message, message2]);
 
   return (
     <form
