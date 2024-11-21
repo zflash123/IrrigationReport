@@ -20,6 +20,10 @@ export default function Protected() {
   useEffect(()=>{
     if(statusCode===403){
       toast.error("Harap Login terlebih dahulu");
+    } else if(statusCode===401){
+      toast.error("Harap verifikasi email Anda")
+    } else if(statusCode===500){
+      toast.error("Terdapat error di server")
     }
   }, [statusCode])
   if(statusCode===403){
@@ -30,8 +34,18 @@ export default function Protected() {
     );
   } else if(statusCode===200){
     return <Outlet/>;
+  } else if(statusCode===401){
+    return (
+      <>
+        <Navigate to="/login" />
+      </>
+    );
   } else if(statusCode===500){
-    return <h1>500 Internal Server Error</h1>
+    return (
+      <>
+        <Navigate to="/login" />
+      </>
+    );
   } else if(statusCode===""){
     return <LoadingPopUp/>
   }else{
