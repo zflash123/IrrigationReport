@@ -2,7 +2,8 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 
-const FORM_ENDPOINT = "https://laporirigasi.my.id/api/reset-password";
+const API_URL = import.meta.env.VITE_API_URL;
+const FORM_ENDPOINT = `${API_URL}/api/reset-password`;
 
 const ChangePasswordForm = ({changeIsLoading}) => {
   const { token } = useParams();
