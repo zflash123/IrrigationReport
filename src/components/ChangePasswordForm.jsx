@@ -4,9 +4,9 @@ import { toast } from "react-toastify";
 
 const FORM_ENDPOINT = "https://laporirigasi.my.id/api/reset-password";
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm = ({changeIsLoading}) => {
   const { token } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, ] = useSearchParams();
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   const email = searchParams.get("email");
@@ -14,6 +14,7 @@ const ChangePasswordForm = () => {
   let navigate = useNavigate();
   
   const handleSubmit = (e) => {
+    changeIsLoading(true)
     e.preventDefault();
     setStatus('loading');
     setMessage('');
@@ -39,11 +40,13 @@ const ChangePasswordForm = () => {
         return null;
       })
       .then(() => {
+        changeIsLoading(false)
         setStatus('success');
       })
       .catch((err) => {
         setMessage(err.toString());
         setStatus('error');
+        changeIsLoading(false)
       });
   };
 
