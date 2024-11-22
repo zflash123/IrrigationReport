@@ -30,3 +30,15 @@
 .center-point-link {
   font-size: 20px;
 }
+
+@media only screen and (min-width: 1024px) {
+  .report_detail {
+    width: 30%;
+    height: 5%;
+    padding-top: 2.5%;
+  }
+  .report-data {
+    margin-right: 20%;
+    margin-left: 20%;
+  }
+}
