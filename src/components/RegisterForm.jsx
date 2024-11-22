@@ -24,6 +24,11 @@ const RegisterForm = ({changeIsLoading}) => {
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
 
+    if(data.password != data.confirm_password){
+      toast.error("Password yang anda inputkan dengan Konfirmasi Password tidak sama");
+      changeIsLoading(false);
+      return;
+    }
     fetch(finalFormEndpoint, {
       method: 'POST',
       headers: {
@@ -82,6 +87,7 @@ const RegisterForm = ({changeIsLoading}) => {
       <input type="text" name="username" className="r-form-input" id="register-username" placeholder="Username" required /><br></br>
       <input type="text" name="email" className="r-form-input" id="register-email" placeholder="Email" required /><br></br>
       <input type="password" name="password" className="r-form-input" id="register-password" placeholder="Password" required /><br></br>
+      <input type="password" name="confirm_password" className="r-form-input" id="register-password" placeholder="Konfirmasi Password" required /><br></br>
       <input type="text" name="fullname" className="r-form-input" id="register-fullname" placeholder="Nama Lengkap" required /><br></br>
       <input type="hidden" name="urole_id" value={"1d3c9d35-3d02-4b42-ad44-b75ca8c4e4fa"}/><br></br>
       <button className="register-button">Register</button>
