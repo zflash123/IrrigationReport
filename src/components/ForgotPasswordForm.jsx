@@ -4,11 +4,12 @@ import { toast } from "react-toastify";
 const API_URL = import.meta.env.VITE_API_URL;
 const FORM_ENDPOINT = `${API_URL}/api/forgot-password`;
 
-const ForgotPasswordForm = () => {
+const ForgotPasswordForm = ({changeIsLoading}) => {
   const [status, setStatus] = useState('');
   const [message, setMessage] = useState('');
   
   const handleSubmit = (e) => {
+    changeIsLoading(true)
     e.preventDefault();
     setStatus('loading');
     setMessage('');
@@ -34,11 +35,13 @@ const ForgotPasswordForm = () => {
         return null;
       })
       .then(() => {
+        changeIsLoading(false)
         setStatus('success');
       })
       .catch((err) => {
         setMessage(err.toString());
         setStatus('error');
+        changeIsLoading(false)
       });
   };
 
