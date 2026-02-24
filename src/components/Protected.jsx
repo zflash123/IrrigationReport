@@ -10,8 +10,7 @@ export default function Protected() {
     const cookies = new Cookies();
     const apiUrl = import.meta.env.VITE_API_URL;
     fetch(`${apiUrl}/api/check-valid-cookie`, {
-      headers: {Authorization: 'Bearer '+cookies.get('user_session')},
-      mode: 'cors'
+      headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
         setStatusCode(res.status);
