@@ -59,7 +59,7 @@ export default function DetailRiwayat() {
         </div>
         <div className="report-data">
           <h4>Nama Irigasi:</h4>
-          <h4>{riwayat[segment].irrigation}</h4>
+          <h4>{riwayat[segment].irrigation_name}</h4>
         </div>
         <div className="report-data">
           <h4>Saluran:</h4>
