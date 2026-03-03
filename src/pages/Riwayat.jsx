@@ -138,7 +138,7 @@ export default function Riwayat(){
         </div>
         {riwayats.map((riwayat) => (
           <div className="riwayat-box" key={riwayat.id} onClick={() => toDetailPage(riwayat.id+"/0")}>
-            <h3>Nama Irigasi: {riwayat.irrigation}</h3>
+            <h3>Nama Irigasi: {riwayat.irrigation_name}</h3>
             <h3>Saluran: {riwayat.canal}</h3>
             <h3>Status: {riwayat.status}</h3>
             <h3>Tanggal Lapor: {riwayat.created_at.split(" ")[0]}</h3>
