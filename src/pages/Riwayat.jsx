@@ -18,6 +18,8 @@ export default function Riwayat(){
 
   function handleSubmit(e) {
     e.preventDefault();
+    //Clear riwayats State first [to fix a bug]
+    setRiwayats([])
     const data = Array.from(e.target.elements)
       .filter((input) => input.name)
       .reduce((obj, input) => Object.assign(obj, { [input.name]: input.value }), {});
