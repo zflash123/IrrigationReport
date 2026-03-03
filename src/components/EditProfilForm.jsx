@@ -14,7 +14,7 @@ const EditProfilForm = () => {
 
   useEffect(() => {
     const cookies = new Cookies();
-    fetch(`https://laporirigasi.my.id/api/profile`, {
+    fetch(FORM_ENDPOINT, {
       headers: {Authorization: 'Bearer '+cookies.get('user_session')}
     })
       .then((res) => {
